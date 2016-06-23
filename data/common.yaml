@@ -1,0 +1,45 @@
+---
+mcollective::common_config:
+  identity: "%{trusted.certname}"
+  #securityprovider: puppet
+  #connector: nats
+
+mcollective::plugin_classes:
+  - mcollective::packager
+  - mcollective_agent_puppet
+  - mcollective_agent_service
+    #  - mcollective_connector_nats
+    #  - mcollective_security_puppet
+
+mcollective::server: true
+mcollective::client: false
+mcollective::service_name: "mcollective"
+mcollective::service_ensure: "running"
+mcollective::service_enable: true
+mcollective::plugin_owner: "root"
+mcollective::plugin_group: "root"
+mcollective::plugin_mode: "0664"
+mcollective::libdir: "/opt/puppetlabs/mcollective/plugins/mcollective"
+mcollective::plugintypes:
+  - "agent"
+  - "aggregate"
+  - "application"
+  - "audit"
+  - "connector"
+  - "data"
+  - "discovery"
+  - "registration"
+  - "security"
+  - "util"
+  - "validator"
+  - "pluginpackager"
+
+lookup_options:
+  mcollective::plugin_classes:
+    merge: unique
+  mcollective::client_config:
+    merge:
+      strategy: deep
+  mcollective::server_config:
+    merge:
+      strategy: deep
