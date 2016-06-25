@@ -6,6 +6,8 @@ mcollective::plugin_classes:
   - mcollective::packager
   - mcollective_agent_puppet
   - mcollective_agent_service
+  - mcollective_agent_package
+  - mcollective_security_puppet
 
 mcollective::server: true
 mcollective::client: false
