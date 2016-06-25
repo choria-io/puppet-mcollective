@@ -1,10 +1,12 @@
 {
   "name": "ripienaar-mcollective",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "R.I.Pienaar <rip@devco.net>",
-  "license": "ASL 2.0",
+  "license": "Apache-2.0",
   "summary": "Configure the Puppet AIO MCollective",
-  "source": "https://devco.net/",
+  "source": "https://github.com/ripienaar/puppet-mcollective",
+  "project_page": "https://github.com/ripienaar/puppet-mcollective",
+  "issues_url": "https://github.com/ripienaar/puppet-mcollective/issues",
   "dependencies": [
     { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.12.0 < 5.0.0" },
     { "name": "puppetlabs/inifile", "version_requirement": ">= 1.5.0 < 2.0.0" },
