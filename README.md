@@ -1,12 +1,17 @@
 Manage a AIO Installation of The Marionette Collective
 ======================================================
 
-This is an oppinionated module to manage an already installed Puppet AIO based mcollective
+This is an module to manage an already installed Puppet AIO based mcollective:
 
   * Configures the main `server.cfg` and `client.cfg` and service
   * Provides a mcollective plugin packager that produce AIO specific modules of mco plugins
   * Installs a number of default puppet related plugins
   * Creates directories the AIO packages failed to create
+
+It's part of a larger effort to make bootstrapping trivial, to that goal a new Security
+provider has been written for use with AIO Puppet when used with a Puppet CA, this can
+be found at https://github.com/ripienaar/mcollective-security-puppet and is relased on
+the forge at https://forge.puppet.com/ripienaar/mcollective_security_puppet
 
 Configuring Server and Client
 -----------------------------
