@@ -1,15 +1,11 @@
 ---
 mcollective::common_config:
   identity: "%{trusted.certname}"
-  #securityprovider: puppet
-  #connector: nats
 
 mcollective::plugin_classes:
   - mcollective::packager
   - mcollective_agent_puppet
   - mcollective_agent_service
-    #  - mcollective_connector_nats
-    #  - mcollective_security_puppet
 
 mcollective::server: true
 mcollective::client: false

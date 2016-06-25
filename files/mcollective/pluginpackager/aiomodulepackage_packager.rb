@@ -35,12 +35,19 @@ module MCollective
         end
       end
 
+      def version
+        if Integer(@plugin.revision) > 1
+          "%s-%s" % [@plugin.metadata[:version], @plugin.revision]
+        else
+          @plugin.metadata[:version]
+        end
+      end
       def module_name
         "mcollective_%s_%s" % [@plugin.plugintype.downcase, @plugin.metadata[:name].downcase]
       end
 
       def module_file_name
-        "%s-%s-%s.tar.gz" % [@plugin.vendor, module_name, @plugin.metadata[:version]]
+        "%s-%s-%s.tar.gz" % [@plugin.vendor, module_name, version]
       end
 
       def dirlist(type)
