@@ -22,9 +22,9 @@ define mcollective::module_plugin (
   Boolean $server = $mcollective::server,
   String $libdir = $mcollective::libdir,
   String $configdir = $mcollective::configdir,
-  String $owner = $mcollective::plugin_owner,
-  String $group = $mcollective::plugin_group,
-  String $mode = $mcollective::plugin_mode,
+  Optional[String] $owner = $mcollective::plugin_owner,
+  Optional[String] $group = $mcollective::plugin_group,
+  Optional[String] $mode = $mcollective::plugin_mode,
   Enum["present", "absent"] $ensure = "present"
 ) {
   if ($server and $client) {
@@ -96,21 +96,21 @@ define mcollective::module_plugin (
   $merged_directories.each |$file| {
     unless defined(File["${libdir}/${file}"]) {
       file{"${libdir}/${file}":
+        ensure => $ensure ? {"present" => "directory", "absent" => "absent"},
         owner  => $owner,
         group  => $group,
         mode   => $mode,
-        ensure => $ensure ? {"present" => "directory", "absent" => "absent"}
       }
     }
   }
 
   $merged_files.each |$file| {
     file{"${libdir}/${file}":
+      ensure => $ensure,
       source => "puppet:///modules/${caller_module_name}/mcollective/${file}",
       owner  => $owner,
       group  => $group,
       mode   => $mode,
-      ensure => $ensure
     }
   }
 

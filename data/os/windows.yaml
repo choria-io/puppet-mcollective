@@ -1,0 +1,6 @@
+mcollective::plugin_owner: ~
+mcollective::plugin_group: ~
+mcollective::plugin_mode: ~
+
+mcollective::libdir: "C:/ProgramData/PuppetLabs/mcollective/plugins"
+mcollective::configdir: "C:/ProgramData/PuppetLabs/mcollective/etc"
