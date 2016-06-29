@@ -18,6 +18,7 @@ mcollective::plugin_owner: "root"
 mcollective::plugin_group: "root"
 mcollective::plugin_mode: "0664"
 mcollective::libdir: "/opt/puppetlabs/mcollective/plugins/mcollective"
+mcollective::configdir: "/etc/puppetlabs/mcollective"
 mcollective::plugintypes:
   - "agent"
   - "aggregate"

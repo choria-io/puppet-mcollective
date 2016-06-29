@@ -64,7 +64,7 @@ define mcollective::module_plugin (
     $merged_conf.each |$item, $value| {
       ini_setting{"${name}-${config_name}-${item}":
         ensure  => $ensure,
-        path    => "/etc/puppetlabs/mcollective/plugin.d/${config_name}.conf",
+        path    => "${mcollective::configdir}/plugin.d/${config_name}.conf",
         setting => $item,
         value   => $value
       }

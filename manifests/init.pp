@@ -6,6 +6,7 @@ class mcollective (
   Hash $client_config = {},
   Hash $common_config = {},
   String $libdir,
+  String $configdir,
   String $plugin_owner,
   String $plugin_group,
   String $plugin_mode,

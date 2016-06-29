@@ -4,7 +4,7 @@ class mcollective::config {
 
   $server_config.each |$item, $value| {
     ini_setting{"${name}_server_${item}":
-      path    => "/etc/puppetlabs/mcollective/server.cfg",
+      path    => "${mcollective::configdir}/server.cfg",
       setting => $item,
       value   => $value,
       notify  => Class["mcollective::service"]
@@ -13,7 +13,7 @@ class mcollective::config {
 
   $client_config.each |$item, $value| {
     ini_setting{"${name}_client_${item}":
-      path    => "/etc/puppetlabs/mcollective/client.cfg",
+      path    => "${mcollective::configdir}/client.cfg",
       setting => $item,
       value   => $value
     }
