@@ -4,7 +4,7 @@ class mcollective::plugin_dirs {
   }
 
   $needed_dirs = [
-    "/etc/puppetlabs/mcollective/plugin.d",
+    "${mcollective::configdir}/plugin.d",
     $mcollective::libdir,
     $libdirs
   ]
