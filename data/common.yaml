@@ -1,13 +1,21 @@
 ---
 mcollective::common_config:
+  securityprovider: "puppet"
   identity: "%{trusted.certname}"
 
+mcollective::policy_default: "deny"
+
+mcollective::server_config:
+  rpcauthorization: 1
+  rpcauthprovider: "action_policy"
+
 mcollective::plugin_classes:
-  - mcollective::packager
-  - mcollective_agent_puppet
-  - mcollective_agent_service
-  - mcollective_agent_package
-  - mcollective_security_puppet
+  - "mcollective::packager"
+  - "mcollective_agent_puppet"
+  - "mcollective_agent_service"
+  - "mcollective_agent_package"
+  - "mcollective_security_puppet"
+  - "mcollective_util_actionpolicy"
 
 mcollective::server: true
 mcollective::client: false
@@ -35,10 +43,10 @@ mcollective::plugintypes:
 
 lookup_options:
   mcollective::plugin_classes:
-    merge: unique
+    merge: "unique"
   mcollective::client_config:
     merge:
-      strategy: deep
+      strategy: "deep"
   mcollective::server_config:
     merge:
-      strategy: deep
+      strategy: "deep"

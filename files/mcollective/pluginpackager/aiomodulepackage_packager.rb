@@ -25,6 +25,8 @@ module MCollective
           move_package
 
           puts("Completed building module for %s" % module_name)
+        rescue
+          STDERR.puts("Failed to build plugin module: %s: %s" % [$!.class, $!.to_s])
         ensure
           if @keep_artifacts
             puts("Keeping build artifacts")

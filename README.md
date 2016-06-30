@@ -5,13 +5,44 @@ This is an module to manage an already installed Puppet AIO based mcollective:
 
   * Configures the main `server.cfg` and `client.cfg` and service
   * Provides a mcollective plugin packager that produce AIO specific modules of mco plugins
-  * Installs a number of default puppet related plugins
   * Creates directories the AIO packages failed to create
+  * [Puppet Agent](https://github.com/puppetlabs/mcollective-puppet-agent)
+  * [Package Agent](https://github.com/puppetlabs/mcollective-package-agent)
+  * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
+  * [Puppet Based Security System](https://github.com/ripienaar/mcollective-security-puppet) with default secure settings
+  * [Action Policy Authorization](https://github.com/puppetlabs/mcollective-actionpolicy-auth) with default secure settings
 
-It's part of a larger effort to make bootstrapping trivial, to that goal a new Security
-provider has been written for use with AIO Puppet when used with a Puppet CA, this can
-be found at https://github.com/ripienaar/mcollective-security-puppet and is relased on
-the forge at https://forge.puppet.com/ripienaar/mcollective_security_puppet
+It's part of a larger effort to make bootstrapping trivial, so this is effectively a
+distribution of MCollective that pulls together various MCollective plugins to yield
+a featureful and secure MCollective out of the box with minimal effort.
+
+Installation
+------------
+
+NOTE: At the moment this is incomplete as a connector is not setup, in progress, you can
+configure your preffered one using the notes under `Configuring Server and Client`.
+
+You must have a AIO Puppet setup to communicate with a Puppet Master and it should already
+have certs, by convention certs sould match `fqdn`.  The new security plugins require these
+certs.
+
+Simply install the `ripienaar-mcollective` module in your environment, it will bring in
+all it's dependencies.
+
+On a managed node include `mcollective`.
+
+On a managed node that should also have client tools set `mcollective::client` to `true`. Set
+`mcollective::server` to `false` to not maange the mcollective daemon or install any agents
+
+Clients who wish to use the `mco` cli need a Puppet CA provided certificate, you obtain these
+with:
+
+```
+$ mco request_cert -ca ca.example.net
+```
+
+Once the certificate is signed and downloaded you can use the utilities.  If fetching the cert
+times out, you can just run this command again.
 
 Configuring Server and Client
 -----------------------------
@@ -48,6 +79,57 @@ mcollective::plugin_classes:
 ```
 
 Or you can just install them however you prefer.
+
+If for any reason you do not want some plugin on a tier, add it to the list `mcollective::plugin_classes_exclude`
+
+Authorization
+-------------
+
+Authorization using the `actionpolicy` plugin is setup automatically and configured to default
+deny all requests made from clients.
+
+Agent plugins can declare their own default rule sets - which should allow non destructive
+actions by default. For example the `service` agent should allow `status` but not `stop`,
+`start` or `restart`.
+
+You can delcare a site policy - for example to give your admins access to all actions on all
+agents.  And you can define per module policy.  All via Hiera
+
+The default applied to all modules can be set site wide:
+
+```yaml
+mcollective::policy_default: allow
+```
+
+You can then specify a site wide policy, here I let myself access everything on all agents:
+
+```yaml
+mcollective::site_policies:
+- action: "allow"
+  callers: "cert=rip.mcollective"
+  actions: "*"
+  facts: "*"
+  classes: "*"
+```
+
+Site wide policies are applied *after* agent specific ones, be aware of that when constructing
+site rules.
+
+Specific policies can be specified per agent - but note they override the agent specific default
+policies so if you specify any you have to specify all:
+
+```yaml
+mcollective_agent_puppet::policy_default: allow
+mcollective_agent_puppet::policies:
+- action: "allow"
+  callers: "cert=developer.mcollective"
+  actions: "*"
+  facts: "environment=development"
+  classes: "*"
+```
+
+In this way plugins can check their default policy into their repo using the `.plugin.yaml` file,
+more on that below.
 
 Plugin Packaging
 ----------------
@@ -89,9 +171,8 @@ Puppet 4 data in modules.
 Status
 ------
 
-It's early days for this module and right now it only works with RedHat - or probably all Unix thanks
-to the AIO standards.  Supporting other OSes is quite easy by adding files in `os/OsFamily.yaml`,
-contributions appreciated.
+It's early days for this module and right now it only works with Unix thanks to the AIO standards.
+Supporting Windows is quite easy by adding files in `os/OsFamily.yaml`, contributions appreciated.
 
 I have a goal to make using files like `~/.mcollective` and the very complex nature of managing
 those completely redundant.  So this module does nothing at present to help you manage those.  They
