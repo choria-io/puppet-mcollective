@@ -5,6 +5,7 @@ class mcollective::plugin_dirs {
 
   $needed_dirs = [
     "${mcollective::configdir}/plugin.d",
+    "${mcollective::configdir}/policies",
     $mcollective::libdir,
     $libdirs
   ]

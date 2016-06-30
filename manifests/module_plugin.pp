@@ -12,12 +12,16 @@ define mcollective::module_plugin (
   Hash $package_dependencies = {},
   Boolean $manage_class_dependencies = true,
   Array[String] $class_dependencies = [],
+  Mcollective::Policy_action $policy_default = $mcollective::policy_default,
+  Array[Mcollective::Policy] $policies = [],
+  Array[Mcollective::Policy] $site_policies = $mcollective::site_policies,
   Hash $config = {},
   Hash $client_config = {},
   Hash $server_config = {},
   Boolean $client = $mcollective::client,
   Boolean $server = $mcollective::server,
   String $libdir = $mcollective::libdir,
+  String $configdir = $mcollective::configdir,
   String $owner = $mcollective::plugin_owner,
   String $group = $mcollective::plugin_group,
   String $mode = $mcollective::plugin_mode,
@@ -60,11 +64,29 @@ define mcollective::module_plugin (
     }
   }
 
+  if $name =~ /^mcollective_agent_(.+)/ {
+    $agent_name = $1
+
+    $policy_content = epp("mcollective/policy_file.epp", {
+      "module"         => $name,
+      "policy_default" => $policy_default,
+      "policies"       => $policies,
+      "site_policies"  => $site_policies
+    })
+
+    file{"${configdir}/policies/${agent_name}.policy":
+      owner      => $owner,
+      group      => $group,
+      mode       => $mode,
+      content    => $policy_content
+    }
+  }
+
   unless $merged_conf.empty {
     $merged_conf.each |$item, $value| {
       ini_setting{"${name}-${config_name}-${item}":
         ensure  => $ensure,
-        path    => "${mcollective::configdir}/plugin.d/${config_name}.conf",
+        path    => "${configdir}/plugin.d/${config_name}.conf",
         setting => $item,
         value   => $value
       }
