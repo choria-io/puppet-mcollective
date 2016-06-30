@@ -11,6 +11,7 @@ This is an module to manage an already installed Puppet AIO based mcollective:
   * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
   * [Puppet Based Security System](https://github.com/ripienaar/mcollective-security-puppet) with default secure settings
   * [Action Policy Authorization](https://github.com/puppetlabs/mcollective-actionpolicy-auth) with default secure settings
+  * Audit logs in `/var/log/mcollective-audit.log` and `C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log`
 
 It's part of a larger effort to make bootstrapping trivial, so this is effectively a
 distribution of MCollective that pulls together various MCollective plugins to yield
