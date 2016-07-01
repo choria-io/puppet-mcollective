@@ -3,7 +3,7 @@
   String $policy_default,
   Array[Mcollective::Policy] $policies,
   Array[Mcollective::Policy] $site_policies
-| ->
+| -%>
 policy default <%= $policy_default %>
 <%- if !$policies.empty { -%>
 
