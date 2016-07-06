@@ -1,4 +1,7 @@
 ---
+mcollective::collectives:
+  - "mcollective"
+
 mcollective::common_config:
   securityprovider: "puppet"
   identity: "%{trusted.certname}"
@@ -42,6 +45,8 @@ mcollective::plugintypes:
   - "pluginpackager"
 
 lookup_options:
+  mcollective::collectives:
+    merge: "unique"
   mcollective::plugin_classes:
     merge: "unique"
   mcollective::client_config:
