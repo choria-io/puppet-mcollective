@@ -8,6 +8,8 @@
 # @param common_config A hash of config items to set in both client.cfg and server.cfg
 # @param libdir The directory where plugins will go in
 # @param configdir Root directory to config files
+# @param collectives A list of collectives the node belongs to
+# @param main_collective The main collective to use, last in the list of `$collectives` by default
 # @param plugin_owner The default user who will own plugin files
 # @param plugin_group The default group who will own plugin files
 # @param plugin_mode The default mode plugin files will have
@@ -27,6 +29,8 @@ class mcollective (
   Hash $common_config = {},
   String $libdir,
   String $configdir,
+  Array[Mcollective::Collective] $collectives,
+  Optional[Mcollective::Collective] $main_collective = undef,
   Optional[String] $plugin_owner,
   Optional[String] $plugin_group,
   Optional[String] $plugin_mode,
