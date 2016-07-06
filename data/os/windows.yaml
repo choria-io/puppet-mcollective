@@ -4,3 +4,6 @@ mcollective::plugin_mode: ~
 
 mcollective::libdir: "C:/ProgramData/PuppetLabs/mcollective/plugins"
 mcollective::configdir: "C:/ProgramData/PuppetLabs/mcollective/etc"
+
+mcollective::server_config:
+  plugin.rpcaudit.logfile: "C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log"
