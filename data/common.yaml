@@ -11,6 +11,9 @@ mcollective::policy_default: "deny"
 mcollective::server_config:
   rpcauthorization: 1
   rpcauthprovider: "action_policy"
+  rpcaudit: 1
+  rpcauditprovider: logfile
+  plugin.rpcaudit.logfile: "/var/log/mcollective-audit.log"
 
 mcollective::plugin_classes:
   - "mcollective::packager"
