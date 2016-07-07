@@ -9,9 +9,11 @@ This is an module to manage an already installed Puppet AIO based mcollective:
   * [Puppet Agent](https://github.com/puppetlabs/mcollective-puppet-agent)
   * [Package Agent](https://github.com/puppetlabs/mcollective-package-agent)
   * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
+  * [File Manager Agent](https://github.com/puppetlabs/mcollective-filemgr-agent)
   * [Puppet Based Security System](https://github.com/ripienaar/mcollective-security-puppet) with default secure settings
   * [Action Policy Authorization](https://github.com/puppetlabs/mcollective-actionpolicy-auth) with default secure settings
   * Audit logs in `/var/log/mcollective-audit.log` and `C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log`
+  * Facts using a YAML file refreshed using Cron or Windows Scheduler
 
 It's part of a larger effort to make bootstrapping trivial, so this is effectively a
 distribution of MCollective that pulls together various MCollective plugins to yield
@@ -82,6 +84,18 @@ mcollective::plugin_classes:
 Or you can just install them however you prefer.
 
 If for any reason you do not want some plugin on a tier, add it to the list `mcollective::plugin_classes_exclude`
+
+Facts
+-----
+
+The only supported fact source is YAML and it will refresh on every Puppet run and by default
+from Cron and Windows Scheduler.
+
+Set `mcollective::facts_refresh_interval` to `0` to disable the scheduled updates.  At present
+the output path cannot be changed and by default it will configure the daemon to the same path.
+
+You can adjust the path to include additional YAML files if you wish by updating it to consider
+multiple YAML files by specifying a `File::PATH_SEPARATOR` seperated list of paths.
 
 Authorization
 -------------
