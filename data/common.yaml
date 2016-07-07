@@ -12,19 +12,23 @@ mcollective::server_config:
   rpcauthorization: 1
   rpcauthprovider: "action_policy"
   rpcaudit: 1
-  rpcauditprovider: logfile
+  rpcauditprovider: "logfile"
   plugin.rpcaudit.logfile: "/var/log/mcollective-audit.log"
+  factsource: "yaml"
+  plugin.yaml: "/etc/puppetlabs/mcollective/facts.yaml"
 
 mcollective::plugin_classes:
   - "mcollective::packager"
   - "mcollective_agent_puppet"
   - "mcollective_agent_service"
   - "mcollective_agent_package"
+  - "mcollective_agent_filemgr"
   - "mcollective_security_puppet"
   - "mcollective_util_actionpolicy"
 
 mcollective::server: true
 mcollective::client: false
+mcollective::facts_refresh_interval: 10
 mcollective::service_name: "mcollective"
 mcollective::service_ensure: "running"
 mcollective::service_enable: true
@@ -33,6 +37,7 @@ mcollective::plugin_group: "root"
 mcollective::plugin_mode: "0664"
 mcollective::libdir: "/opt/puppetlabs/mcollective/plugins/mcollective"
 mcollective::configdir: "/etc/puppetlabs/mcollective"
+mcollective::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
 mcollective::plugintypes:
   - "agent"
   - "aggregate"

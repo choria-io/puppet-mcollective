@@ -8,6 +8,8 @@
 # @param common_config A hash of config items to set in both client.cfg and server.cfg
 # @param libdir The directory where plugins will go in
 # @param configdir Root directory to config files
+# @param facts_refresh_interval Minutes between fact refreshes, set to 0 to disable cron based refreshes
+# @param rubypath Path to the ruby executable
 # @param collectives A list of collectives the node belongs to
 # @param main_collective The main collective to use, last in the list of `$collectives` by default
 # @param plugin_owner The default user who will own plugin files
@@ -29,6 +31,8 @@ class mcollective (
   Hash $common_config = {},
   String $libdir,
   String $configdir,
+  String $rubypath,
+  Integer $facts_refresh_interval,
   Array[Mcollective::Collective] $collectives,
   Optional[Mcollective::Collective] $main_collective = undef,
   Optional[String] $plugin_owner,
@@ -42,8 +46,11 @@ class mcollective (
   Boolean $client,
   Boolean $server
 ) {
+  $factspath = "${configdir}/facts.yaml"
+
   include mcollective::plugin_dirs
   include mcollective::config
+  include mcollective::facts
   include mcollective::service
 
   include $plugin_classes - $plugin_classes_exclude
