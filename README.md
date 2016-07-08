@@ -1,24 +1,39 @@
 Manage a AIO Installation of The Marionette Collective
 ======================================================
 
-This is an module to manage an already installed Puppet AIO based mcollective:
+This is an module to manage an already installed Puppet AIO based mcollective.
 
-  * Configures the main `server.cfg` and `client.cfg` and service
-  * Provides a mcollective plugin packager that produce AIO specific modules of mco plugins
-  * Creates directories the AIO packages failed to create
+It takes default decisions that are compatible with AIO and tries to get as
+close to working out of the box with no complex config or decision making needed
+on the side of the user.
+
+Towards this it makes many of decisions related to security plugin, middleware,
+facts etc and finally installs a number of plugins for you out of the box.
+
+The goal is that this Just Works while being secure by default.  It sets up strong
+CA verified TLS connections to your middleware and sets up a similar CA verified
+security plugin for MCollective.
+
+It configures the full AAA (Authentication, Authorization and Auditing) that MCollective
+supports and it all works out of the box.
+
+Users do not need per-user configuration files and that it integrates well and naturally
+into the Puppet eco system.
+
+Components Installed / Configured
+---------------------------------
+
+  * [Puppet Based Security System](https://github.com/ripienaar/mcollective-security-puppet) with default secure settings
+  * [NATS.io Based Connector](https://github.com/ripienaar/mcollective-connector-nats) with default secure settings
   * [Puppet Agent](https://github.com/puppetlabs/mcollective-puppet-agent)
   * [Package Agent](https://github.com/puppetlabs/mcollective-package-agent)
   * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
   * [File Manager Agent](https://github.com/puppetlabs/mcollective-filemgr-agent)
-  * [Puppet Based Security System](https://github.com/ripienaar/mcollective-security-puppet) with default secure settings
-  * [NATS.io Based Connector](https://github.com/ripienaar/mcollective-connector-nats) with default secure settings
   * [Action Policy Authorization](https://github.com/puppetlabs/mcollective-actionpolicy-auth) with default secure settings
   * Audit logs in `/var/log/mcollective-audit.log` and `C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log`
   * Facts using a YAML file refreshed using Cron or Windows Scheduler
-
-It's part of a larger effort to make bootstrapping trivial, so this is effectively a
-distribution of MCollective that pulls together various MCollective plugins to yield
-a featureful and secure MCollective out of the box with minimal effort.
+  * Configures the main `server.cfg` and `client.cfg` and service
+  * Provides a mcollective plugin packager that produce AIO specific modules of mco plugins
 
 Installation
 ------------
@@ -28,10 +43,10 @@ have certs, by convention certs sould match `fqdn`.  The new security plugins re
 certs.
 
 You need a middleware connector, this sets up a NATS.io based connector and does not configure
-the middleware for you.  See the nodes in [NATS.md](NATS.md) for simple instructions to set
-up NATS.
+the middleware for you.  See the nodes in [NATS.md](https://github.com/ripienaar/puppet-mcollective/blob/master/NATS.md)
+for simple instructions to set up NATS.
 
-Once you have a connector install the `ripienaar-mcollective` module in your environment, it will
+Once you have a middleware install the `ripienaar-mcollective` module in your environment, it will
 bring in all it's dependencies.
 
 On a managed node include `mcollective`.
@@ -45,6 +60,8 @@ with:
 ```
 $ mco request_cert -ca ca.example.net
 ```
+
+Using the `mco` utilities as `root` is not encouraged and so not supported by default.
 
 Once the certificate is signed and downloaded you can use the utilities.  If fetching the cert
 times out, you can just run this command again.
