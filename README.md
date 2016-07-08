@@ -23,15 +23,16 @@ a featureful and secure MCollective out of the box with minimal effort.
 Installation
 ------------
 
-NOTE: At the moment this is incomplete as a connector is not setup, in progress, you can
-configure your preffered one using the notes under `Configuring Server and Client`.
-
 You must have a AIO Puppet setup to communicate with a Puppet Master and it should already
 have certs, by convention certs sould match `fqdn`.  The new security plugins require these
 certs.
 
-Simply install the `ripienaar-mcollective` module in your environment, it will bring in
-all it's dependencies.
+You need a middleware connector, this sets up a NATS.io based connector and does not configure
+the middleware for you.  See the nodes in [NATS.md](NATS.md) for simple instructions to set
+up NATS.
+
+Once you have a connector install the `ripienaar-mcollective` module in your environment, it will
+bring in all it's dependencies.
 
 On a managed node include `mcollective`.
 
@@ -183,15 +184,3 @@ mcollective_agent_example::common_config:
 
 This will be merged into the final module data and configure the resulting Puppet module based on
 Puppet 4 data in modules.
-
-Status
-------
-
-It's early days for this module and it does not yet yield a fully working setup, specifically this
-does not manage any middleware - but it does install a new NATS.io based connector and enables it.
-
-A companion module will be created to take care of NATS, or at the very least a Docker based setup
-will be documented.
-
-The NATS.io based connector uses Eventmachine and I do not really know what's involved in getting
-that going on Windows, contributors needed.
