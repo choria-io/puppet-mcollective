@@ -11,6 +11,7 @@ This is an module to manage an already installed Puppet AIO based mcollective:
   * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
   * [File Manager Agent](https://github.com/puppetlabs/mcollective-filemgr-agent)
   * [Puppet Based Security System](https://github.com/ripienaar/mcollective-security-puppet) with default secure settings
+  * [NATS.io Based Connector](https://github.com/ripienaar/mcollective-connector-nats) with default secure settings
   * [Action Policy Authorization](https://github.com/puppetlabs/mcollective-actionpolicy-auth) with default secure settings
   * Audit logs in `/var/log/mcollective-audit.log` and `C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log`
   * Facts using a YAML file refreshed using Cron or Windows Scheduler
@@ -186,10 +187,11 @@ Puppet 4 data in modules.
 Status
 ------
 
-It's early days for this module and right now it only works with Unix thanks to the AIO standards.
-Supporting Windows is quite easy by adding files in `os/OsFamily.yaml`, contributions appreciated.
+It's early days for this module and it does not yet yield a fully working setup, specifically this
+does not manage any middleware - but it does install a new NATS.io based connector and enables it.
 
-I have a goal to make using files like `~/.mcollective` and the very complex nature of managing
-those completely redundant.  So this module does nothing at present to help you manage those.  They
-are INI files though so you can easily use `puppetlabs-inifile`, which this module use to manage the
-main config files too.
+A companion module will be created to take care of NATS, or at the very least a Docker based setup
+will be documented.
+
+The NATS.io based connector uses Eventmachine and I do not really know what's involved in getting
+that going on Windows, contributors needed.
