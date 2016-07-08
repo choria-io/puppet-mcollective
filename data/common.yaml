@@ -5,6 +5,7 @@ mcollective::collectives:
 mcollective::common_config:
   securityprovider: "puppet"
   identity: "%{trusted.certname}"
+  connector: "nats"
 
 mcollective::policy_default: "deny"
 
@@ -25,6 +26,7 @@ mcollective::plugin_classes:
   - "mcollective_agent_filemgr"
   - "mcollective_security_puppet"
   - "mcollective_util_actionpolicy"
+  - "mcollective_connector_nats"
 
 mcollective::server: true
 mcollective::client: false
