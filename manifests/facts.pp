@@ -3,7 +3,7 @@ class mcollective::facts (
   String $rubypath = $mcollective::rubypath,
   String $configdir = $mcollective::configdir,
   String $factspath = $mcollective::factspath,
-  Integer $refresh_interval = $mcollective::refresh_interval,
+  Integer $refresh_interval = $mcollective::facts_refresh_interval,
   String $owner = $mcollective::plugin_owner,
   String $group = $mcollective::plugin_group,
   Boolean $server = $mcollective::server
