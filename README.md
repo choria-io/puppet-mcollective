@@ -42,17 +42,40 @@ You must have a AIO Puppet setup to communicate with a Puppet Master and it shou
 have certs, by convention certs sould match `fqdn`.  The new security plugins require these
 certs.
 
-You need a middleware connector, this sets up a NATS.io based connector and does not configure
-the middleware for you.  See the nodes in [NATS.md](https://github.com/ripienaar/puppet-mcollective/blob/master/NATS.md)
+You need a middleware connector, this modlue sets up a NATS.io based connector and does not configure
+the middleware for you.  See the notes in [NATS.md](https://github.com/ripienaar/puppet-mcollective/blob/master/NATS.md)
 for simple instructions to set up NATS.
+
+On nodes due to the `eventmachine` dependency of the NATS Gem you must have compilers installed,
+on my RedHat machine that means the packages `gcc`, `gcc-c++` and `make`.  If you do not already
+manage those somehow you can ask this code to install it for you by making Hiera data:
+
+```yaml
+mcollective_connector_nats::package_dependencies:
+  "gcc": present
+  "gcc-c++": present
+  "make": present
+```
+
+This way you can customise it for your various operating systems and so forth via Hiera tiers.
+
+Alternatively you can package the `eventmachine` dependency up using your in house required methods
+and disable the dependency management by the connector module, this way you do not need to install
+compilers everywhere:
+
+```yaml
+mcollective_connector_nats::manage_gem_dependencies: false
+```
 
 Once you have a middleware install the `ripienaar-mcollective` module in your environment, it will
 bring in all it's dependencies.
 
 On a managed node include `mcollective`.
 
-On a managed node that should also have client tools set `mcollective::client` to `true`. Set
-`mcollective::server` to `false` to not maange the mcollective daemon or install any agents
+On a managed node that should also have client tools set `mcollective::client` to `true`.
+
+If you have a node that should only be able to use the client tools and not also run the daemon
+you can set `mcollective::server` to `false`.
 
 Clients who wish to use the `mco` cli need a Puppet CA provided certificate, you obtain these
 with:
@@ -61,16 +84,18 @@ with:
 $ mco request_cert -ca ca.example.net
 ```
 
-Using the `mco` utilities as `root` is not encouraged and so not supported by default.
+Using the `mco` utilities as `root` is not encouraged and so not supported.
 
 Once the certificate is signed and downloaded you can use the utilities.  If fetching the cert
-times out, you can just run this command again.
+times out, you can just run this command again once the certs are signed.
 
 Configuring Server and Client
 -----------------------------
 
 Server and Client settings are managed using Hiera data and these keys are set up for deep
-hash merging using look up strategies.
+hash merging using look up strategies.  It's free form and generally there aren't specific
+options on the module to set things, just feed in data.  Sub Collectives and Main Collective
+is a notable deviation from this rule.
 
 Some settings like the connector and security provider tend to be common to the Client and
 Server, these are configured using Hiera:
@@ -82,8 +107,8 @@ mcollective::common_config:
 
 This will result in both the main `server.cfg` and `client.cfg` having these settings.
 
-Likewise client specific settings can be set with `mcollective::client_config` and
-`mcollective::server_config`.
+Likewise client or server specific settings can be set with `mcollective::client_config`
+and `mcollective::server_config`.
 
 To enable a specific node to be a MCollective client you have to set `mcollective::client`
 to `true` via hiera
