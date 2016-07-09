@@ -18,6 +18,13 @@ mcollective::server_config:
   factsource: "yaml"
   plugin.yaml: "/etc/puppetlabs/mcollective/facts.yaml"
 
+mcollective::rpcutil_policies:
+  - action: "allow"
+    actions: "ping"
+    callers: "*"
+    facts: "*"
+    classes: "*"
+
 mcollective::plugin_classes:
   - "mcollective::packager"
   - "mcollective_agent_puppet"
@@ -58,6 +65,10 @@ lookup_options:
   mcollective::collectives:
     merge: "unique"
   mcollective::plugin_classes:
+    merge: "unique"
+  mcollective::site_policies:
+    merge: "unique"
+  mcollective::rpcutil_policies:
     merge: "unique"
   mcollective::client_config:
     merge:

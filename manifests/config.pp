@@ -40,4 +40,18 @@ class mcollective::config {
       value   => $value
     }
   }
+
+  $policy_content = epp("mcollective/policy_file.epp", {
+    "module"         => "rpcutil",
+    "policy_default" => $mcollective::policy_default,
+    "policies"       => $mcollective::rpcutil_policies,
+    "site_policies"  => $mcollective::site_policies
+  })
+
+  file{"${mcollective::configdir}/policies/rpcutil.policy":
+    owner      => $mcollective::plugin_owner,
+    group      => $mcollective::plugin_group,
+    mode       => $mcollective::plugin_mode,
+    content    => $policy_content
+  }
 }
