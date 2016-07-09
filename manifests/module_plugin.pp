@@ -47,19 +47,21 @@ define mcollective::module_plugin (
     require $class_dependencies
   }
 
-  if $manage_gem_dependencies {
-    $gem_dependencies.each |$gem, $version| {
-      package{$gem:
-        ensure   => $version,
-        provider => "puppet_gem"
+  if $manage_package_dependencies {
+    $package_dependencies.each |$pkg, $version| {
+      package{$pkg:
+        ensure => $version,
+        tag    => "mcollective_plugin_${name}_packages"
       }
     }
   }
 
-  if $manage_package_dependencies {
-    $package_dependencies.each |$pkg, $version| {
-      package{$pkg:
-        ensure   => $version
+  if $manage_gem_dependencies {
+    $gem_dependencies.each |$gem, $version| {
+      package{$gem:
+        ensure   => $version,
+        provider => "puppet_gem",
+        tag      => "mcollective_plugin_${name}_packages"
       }
     }
   }
@@ -80,6 +82,8 @@ define mcollective::module_plugin (
       mode       => $mode,
       content    => $policy_content
     }
+
+    Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${configdir}/policies/${agent_name}.policy"]
   }
 
   unless $merged_conf.empty {
@@ -90,17 +94,21 @@ define mcollective::module_plugin (
         setting => $item,
         value   => $value
       }
+
+      Package <| tag == "mcollective_plugin_${name}_packages" |> -> Ini_setting["${name}-${config_name}-${item}"]
     }
   }
 
   $merged_directories.each |$file| {
     unless defined(File["${libdir}/${file}"]) {
       file{"${libdir}/${file}":
-        ensure => $ensure ? {"present" => "directory", "absent" => "absent"},
-        owner  => $owner,
-        group  => $group,
-        mode   => $mode,
+        ensure  => $ensure ? {"present" => "directory", "absent" => "absent"},
+        owner   => $owner,
+        group   => $group,
+        mode    => $mode,
       }
+
+      Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/${file}"]
     }
   }
 
@@ -112,6 +120,8 @@ define mcollective::module_plugin (
       group  => $group,
       mode   => $mode,
     }
+
+    Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/${file}"]
   }
 
   Mcollective::Module_plugin[$name] ~> Class["mcollective::service"]
