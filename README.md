@@ -160,12 +160,13 @@ The default applied to all modules can be set site wide:
 mcollective::policy_default: allow
 ```
 
-You can then specify a site wide policy, here I let myself access everything on all agents:
+You can then specify a site wide policy, here I let myself access everything on all agents, these
+are array merged by hiera:
 
 ```yaml
 mcollective::site_policies:
 - action: "allow"
-  callers: "cert=rip.mcollective"
+  callers: "puppet=rip.mcollective"
   actions: "*"
   facts: "*"
   classes: "*"
@@ -181,7 +182,7 @@ policies so if you specify any you have to specify all:
 mcollective_agent_puppet::policy_default: allow
 mcollective_agent_puppet::policies:
 - action: "allow"
-  callers: "cert=developer.mcollective"
+  callers: "puppet=developer.mcollective"
   actions: "*"
   facts: "environment=development"
   classes: "*"
@@ -189,6 +190,11 @@ mcollective_agent_puppet::policies:
 
 In this way plugins can check their default policy into their repo using the `.plugin.yaml` file,
 more on that below.
+
+There is one special plugin called `rpcutil` that ships with MCollective, policies for this one
+by default allow only its `ping` action across all users, you can adjust this with
+`mcollective::rpcutil_policies`.  This should be a sane default that does not leak environment
+details more than `mco ping` already allows.
 
 Plugin Packaging
 ----------------

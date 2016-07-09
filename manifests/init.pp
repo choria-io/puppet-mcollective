@@ -17,6 +17,7 @@
 # @param plugin_mode The default mode plugin files will have
 # @param policy_default When managing plugin policies this will be the default allow/deny
 # @param site_policies Policies to apply to all agents after any module specific policies
+# @param rpcutil_policies Policies to apply to the special rpcutil agent
 # @param service_ensure Ensure value for the service
 # @param service_name The mcollective service name to notify and manage
 # @param service_enable The enable value for the service
@@ -40,6 +41,7 @@ class mcollective (
   Optional[String] $plugin_mode,
   Mcollective::Policy_action $policy_default,
   Array[Mcollective::Policy] $site_policies = [],
+  Array[Mcollective::Policy] $rpcutil_policies = [],
   Enum["stopped", "running"] $service_ensure,
   String $service_name,
   Boolean $service_enable,
