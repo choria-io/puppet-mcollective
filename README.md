@@ -30,10 +30,11 @@ Components Installed / Configured
   * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
   * [File Manager Agent](https://github.com/puppetlabs/mcollective-filemgr-agent)
   * [Action Policy Authorization](https://github.com/puppetlabs/mcollective-actionpolicy-auth) with default secure settings
-  * Audit logs in `/var/log/mcollective-audit.log` and `C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log`
+  * Audit logs in `/var/log/puppetlabs/mcollective-audit.log` and `C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log`
   * Facts using a YAML file refreshed using Cron or Windows Scheduler
   * Configures the main `server.cfg` and `client.cfg` and service
   * Provides a mcollective plugin packager that produce AIO specific modules of mco plugins
+  * Custom `mcollective` fact exposing key client and server configuration and version
 
 Installation
 ------------

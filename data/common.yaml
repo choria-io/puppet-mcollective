@@ -14,7 +14,7 @@ mcollective::server_config:
   rpcauthprovider: "action_policy"
   rpcaudit: 1
   rpcauditprovider: "logfile"
-  plugin.rpcaudit.logfile: "/var/log/mcollective-audit.log"
+  plugin.rpcaudit.logfile: "/var/log/puppetlabs/mcollective-audit.log"
   factsource: "yaml"
   plugin.yaml: "/etc/puppetlabs/mcollective/facts.yaml"
 
