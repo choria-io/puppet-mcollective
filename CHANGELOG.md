@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2016/07/11|28   |Install the PuppetDB based discovery plugin                                                              |
 |2016/07/11|25   |Add a `mcollective` fact with various useful information                                                 |
 |2016/07/11|24   |Move main and audit logs into AIO standard paths                                                         |
 |2016/07/09|21   |Allow the `rpcutil` agent policies to be managed, set sane defaults                                      |
