@@ -99,7 +99,9 @@ module MCollective
       def copy_module_files
         @plugin.packagedata.each do |klass, data|
           data[:files].each do |file|
-            dest_dir = File.expand_path(File.join(@tmpdir, "files", "mcollective", File.dirname(file)))
+            clean_dest_file = file.gsub("./lib/mcollective", "")
+            dest_dir = File.expand_path(File.join(@tmpdir, "files", "mcollective", File.dirname(clean_dest_file)))
+
             FileUtils.mkdir_p(dest_dir) unless File.directory?(dest_dir)
             FileUtils.cp(file, dest_dir) if File.file?(file)
           end
