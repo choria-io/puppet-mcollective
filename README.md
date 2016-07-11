@@ -25,6 +25,7 @@ Components Installed / Configured
 
   * [Puppet Based Security System](https://github.com/ripienaar/mcollective-security-puppet) with default secure settings
   * [NATS.io Based Connector](https://github.com/ripienaar/mcollective-connector-nats) with default secure settings
+  * [PuppetDB Discovery](https://github.com/ripienaar/mcollective-discovery-puppetdb) with default secure settings, but not enabled by default
   * [Puppet Agent](https://github.com/puppetlabs/mcollective-puppet-agent)
   * [Package Agent](https://github.com/puppetlabs/mcollective-package-agent)
   * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
@@ -113,6 +114,23 @@ and `mcollective::server_config`.
 
 To enable a specific node to be a MCollective client you have to set `mcollective::client`
 to `true` via hiera
+
+If you have PuppetDB installed and the SSL port listening and reachable you can test the
+PuppetDB based discovery by passing `--dm puppetdb`, if you like that you can enable it
+by default:
+
+```yaml
+mcollective::client_config:
+  default_discovery_method: "puppetdb"
+```
+
+If your PuppetDB is not on `https://puppet:8081/` you can configure this:
+
+```yaml
+mcollective_discovery_puppetdb::config:
+  host: "puppetdb.example.net"
+  port: "8081"
+```
 
 Installing Plugins
 ------------------

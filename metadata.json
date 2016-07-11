@@ -1,6 +1,6 @@
 {
   "name": "ripienaar-mcollective",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
   "summary": "Configure the Puppet AIO MCollective",
@@ -16,7 +16,8 @@
     { "name": "ripienaar/mcollective_agent_filemgr", "version_requirement": ">= 1.1.0" },
     { "name": "ripienaar/mcollective_security_puppet", "version_requirement": ">= 0.0.3" },
     { "name": "ripienaar/mcollective_connector_nats", "version_requirement": ">= 0.0.1" },
-    { "name": "ripienaar/mcollective_util_actionpolicy", "version_requirement": ">= 2.1.0" }
+    { "name": "ripienaar/mcollective_util_actionpolicy", "version_requirement": ">= 2.1.0" },
+    { "name": "ripienaar/mcollective_discovery_puppetdb", "version_requirement": ">= 0.0.1" }
   ],
   "operatingsystem_support": [
     {
