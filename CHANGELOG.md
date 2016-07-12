@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2016/07/12|31   |Improve client sub collective handling                                                                   |
 |2016/07/11|28   |Install the PuppetDB based discovery plugin                                                              |
 |2016/07/11|25   |Add a `mcollective` fact with various useful information                                                 |
 |2016/07/11|24   |Move main and audit logs into AIO standard paths                                                         |
