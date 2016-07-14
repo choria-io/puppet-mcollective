@@ -1,14 +1,14 @@
-Manage a AIO Installation of The Marionette Collective
-======================================================
+Manage an AIO Installation of The Marionette Collective
+=======================================================
 
-This is an module to manage an already installed Puppet AIO based mcollective.
+This module manages an already installed Puppet AIO based MCollective.
 
-It takes default decisions that are compatible with AIO and tries to get as
+It makes default decisions that are compatible with AIO and tries to get as
 close to working out of the box with no complex config or decision making needed
 on the side of the user.
 
 Towards this it makes many of decisions related to security plugin, middleware,
-facts etc and finally installs a number of plugins for you out of the box.
+facts etc and finally installs a number of plugins out of the box.
 
 The goal is that this Just Works while being secure by default.  It sets up strong
 CA verified TLS connections to your middleware and sets up a similar CA verified
@@ -17,7 +17,7 @@ security plugin for MCollective.
 It configures the full AAA (Authentication, Authorization and Auditing) that MCollective
 supports and it all works out of the box.
 
-Users do not need per-user configuration files and that it integrates well and naturally
+Users do not need per-user configuration files and it integrates well and naturally
 into the Puppet eco system.
 
 Components Installed / Configured
@@ -34,17 +34,17 @@ Components Installed / Configured
   * Audit logs in `/var/log/puppetlabs/mcollective-audit.log` and `C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log`
   * Facts using a YAML file refreshed using Cron or Windows Scheduler
   * Configures the main `server.cfg` and `client.cfg` and service
-  * Provides a mcollective plugin packager that produce AIO specific modules of mco plugins
+  * Provides an MCollective plugin packager that produce AIO specific modules of mco plugins
   * Custom `mcollective` fact exposing key client and server configuration and version
 
 Installation
 ------------
 
-You must have a AIO Puppet setup to communicate with a Puppet Master and it should already
-have certs, by convention certs sould match `fqdn`.  The new security plugins require these
+You must have an AIO Puppet setup to communicate with a Puppet Master and it should already
+have certs, which by convention should match `fqdn`.  The new security plugins require these
 certs.
 
-You need a middleware connector, this modlue sets up a NATS.io based connector and does not configure
+You need a middleware connector, this module sets up a NATS.io based connector but does not configure
 the middleware for you.  See the notes in [NATS.md](https://github.com/ripienaar/puppet-mcollective/blob/master/NATS.md)
 for simple instructions to set up NATS.
 
@@ -70,7 +70,7 @@ mcollective_connector_nats::manage_gem_dependencies: false
 ```
 
 Once you have a middleware install the `ripienaar-mcollective` module in your environment, it will
-bring in all it's dependencies.
+bring in all its dependencies.
 
 On a managed node include `mcollective`.
 
@@ -79,7 +79,7 @@ On a managed node that should also have client tools set `mcollective::client` t
 If you have a node that should only be able to use the client tools and not also run the daemon
 you can set `mcollective::server` to `false`.
 
-Clients who wish to use the `mco` cli need a Puppet CA provided certificate, you obtain these
+Clients who wish to use the `mco` cli need a Puppet CA provided certificate; you obtain these
 with:
 
 ```
@@ -112,7 +112,7 @@ This will result in both the main `server.cfg` and `client.cfg` having these set
 Likewise client or server specific settings can be set with `mcollective::client_config`
 and `mcollective::server_config`.
 
-To enable a specific node to be a MCollective client you have to set `mcollective::client`
+To enable a specific node to be an MCollective client you have to set `mcollective::client`
 to `true` via hiera
 
 If you have PuppetDB installed and the SSL port listening and reachable you can test the
