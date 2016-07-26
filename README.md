@@ -23,9 +23,7 @@ into the Puppet eco system.
 Components Installed / Configured
 ---------------------------------
 
-  * [Puppet Based Security System](https://github.com/ripienaar/mcollective-security-puppet) with default secure settings
-  * [NATS.io Based Connector](https://github.com/ripienaar/mcollective-connector-nats) with default secure settings
-  * [PuppetDB Discovery](https://github.com/ripienaar/mcollective-discovery-puppetdb) with default secure settings, but not enabled by default
+  * [Choria Orchestrator](https://github.com/ripienaar/mcollective-choria) Puppet Security, NATS connector, PuppetDB security and Application Orchastrator
   * [Puppet Agent](https://github.com/puppetlabs/mcollective-puppet-agent)
   * [Package Agent](https://github.com/puppetlabs/mcollective-package-agent)
   * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
@@ -44,9 +42,9 @@ You must have an AIO Puppet setup to communicate with a Puppet Master and it sho
 have certs, which by convention should match `fqdn`.  The new security plugins require these
 certs.
 
-You need a middleware connector, this module sets up a NATS.io based connector but does not configure
-the middleware for you.  See the notes in [NATS.md](https://github.com/ripienaar/puppet-mcollective/blob/master/NATS.md)
-for simple instructions to set up NATS.
+You need a middleware connector, this module sets up a NATS.io based connector but does not yet configure
+the middleware for you.  See the notes at the [Choria Wiki](https://github.com/ripienaar/mcollective-choria/wiki).
+This module or a companion one will soon configure this for you.
 
 On nodes due to the `eventmachine` dependency of the NATS Gem you must have compilers installed,
 on my RedHat machine that means the packages `gcc`, `gcc-c++` and `make`.  If you do not already
@@ -83,7 +81,7 @@ Clients who wish to use the `mco` cli need a Puppet CA provided certificate; you
 with:
 
 ```
-$ mco request_cert -ca ca.example.net
+$ mco choria request_cert
 ```
 
 Using the `mco` utilities as `root` is not encouraged and so not supported.
@@ -93,6 +91,11 @@ times out, you can just run this command again once the certs are signed.
 
 Configuring Server and Client
 -----------------------------
+
+In general you should not need to change settings, if your PuppetDB, Puppet Server or NATS
+is not on the host `puppet` it's recommended you use SRV records to configure where these
+parts live, otherwise refer to the [Choria Wiki](https://github.com/ripienaar/mcollective-choria/wiki)
+for a guide on configuring security, connector and discovery.
 
 Server and Client settings are managed using Hiera data and these keys are set up for deep
 hash merging using look up strategies.  It's free form and generally there aren't specific
@@ -116,20 +119,12 @@ To enable a specific node to be an MCollective client you have to set `mcollecti
 to `true` via hiera
 
 If you have PuppetDB installed and the SSL port listening and reachable you can test the
-PuppetDB based discovery by passing `--dm puppetdb`, if you like that you can enable it
+PuppetDB based discovery by passing `--dm choria`, if you like that you can enable it
 by default:
 
 ```yaml
 mcollective::client_config:
-  default_discovery_method: "puppetdb"
-```
-
-If your PuppetDB is not on `https://puppet:8081/` you can configure this:
-
-```yaml
-mcollective_discovery_puppetdb::config:
-  host: "puppetdb.example.net"
-  port: "8081"
+  default_discovery_method: "choria"
 ```
 
 Installing Plugins

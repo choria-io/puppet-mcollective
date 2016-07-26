@@ -3,7 +3,7 @@ mcollective::collectives:
   - "mcollective"
 
 mcollective::common_config:
-  securityprovider: "puppet"
+  securityprovider: "choria"
   identity: "%{trusted.certname}"
   connector: "nats"
 
@@ -27,13 +27,12 @@ mcollective::rpcutil_policies:
 
 mcollective::plugin_classes:
   - "mcollective::packager"
+  - "mcollective_choria"
   - "mcollective_agent_puppet"
   - "mcollective_agent_service"
   - "mcollective_agent_package"
   - "mcollective_agent_filemgr"
-  - "mcollective_security_puppet"
   - "mcollective_util_actionpolicy"
-  - "mcollective_connector_nats"
 
 mcollective::server: true
 mcollective::client: false
