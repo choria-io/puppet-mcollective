@@ -180,7 +180,7 @@ are array merged by hiera:
 ```yaml
 mcollective::site_policies:
 - action: "allow"
-  callers: "puppet=rip.mcollective"
+  callers: "choria=rip.mcollective"
   actions: "*"
   facts: "*"
   classes: "*"
@@ -196,7 +196,7 @@ policies so if you specify any you have to specify all:
 mcollective_agent_puppet::policy_default: allow
 mcollective_agent_puppet::policies:
 - action: "allow"
-  callers: "puppet=developer.mcollective"
+  callers: "choria=developer.mcollective"
   actions: "*"
   facts: "environment=development"
   classes: "*"
