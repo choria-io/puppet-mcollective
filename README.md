@@ -23,7 +23,7 @@ into the Puppet eco system.
 Components Installed / Configured
 ---------------------------------
 
-  * [Choria Orchestrator](https://github.com/ripienaar/mcollective-choria) Puppet Security, NATS connector, PuppetDB security and Application Orchastrator
+  * [Choria Orchestrator](https://github.com/ripienaar/mcollective-choria) Puppet Security, NATS connector, PuppetDB discovery and Application Orchastrator
   * [Puppet Agent](https://github.com/puppetlabs/mcollective-puppet-agent)
   * [Package Agent](https://github.com/puppetlabs/mcollective-package-agent)
   * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
@@ -42,9 +42,9 @@ You must have an AIO Puppet setup to communicate with a Puppet Master and it sho
 have certs, which by convention should match `fqdn`.  The new security plugins require these
 certs.
 
-You need a middleware connector, this module sets up a NATS.io based connector but does not yet configure
-the middleware for you.  See the notes at the [Choria Wiki](https://github.com/ripienaar/mcollective-choria/wiki).
-This module or a companion one will soon configure this for you.
+You need a middleware connector, this module sets up a NATS.io based connector but does not configure
+the middleware for you.  See the notes at the [Choria Wiki](https://github.com/ripienaar/mcollective-choria/wiki/Connector-NATS-Server)
+for details of a module that sets it up for you.
 
 On nodes due to the `eventmachine` dependency of the NATS Gem you must have compilers installed,
 on my RedHat machine that means the packages `gcc`, `gcc-c++` and `make`.  If you do not already
