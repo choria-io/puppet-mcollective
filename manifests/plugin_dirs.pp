@@ -10,10 +10,26 @@ class mcollective::plugin_dirs {
     $libdirs
   ]
 
-  file{$needed_dirs:
-    ensure => "directory",
-    owner  => $mcollective::plugin_owner,
-    group  => $mcollective::plugin_group,
-    mode   => $mcollective::plugin_mode
+  if $mcollective::purge {
+    $purge_options = {
+      source  => "puppet:///modules/mcollective/empty",
+      ignore  => ".keep",
+      purge   => true,
+      recurse => true,
+      force   => true
+    }
+  } else {
+    $purge_options = {}
+  }
+
+  file {
+    default:
+      * =>  $purge_options;
+
+    $needed_dirs:
+      ensure => "directory",
+      owner  => $mcollective::plugin_owner,
+      group  => $mcollective::plugin_group,
+      mode   => $mcollective::plugin_mode;
   }
 }

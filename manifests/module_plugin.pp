@@ -87,10 +87,17 @@ define mcollective::module_plugin (
   }
 
   unless $merged_conf.empty {
+    file{"${configdir}/plugin.d/${config_name}.cfg":
+      owner  => $owner,
+      group  => $group,
+      mode   => $mode,
+      ensure => $ensure
+    }
+
     $merged_conf.each |$item, $value| {
       ini_setting{"${name}-${config_name}-${item}":
         ensure  => $ensure,
-        path    => "${configdir}/plugin.d/${config_name}.conf",
+        path    => "${configdir}/plugin.d/${config_name}.cfg",
         setting => $item,
         value   => $value
       }

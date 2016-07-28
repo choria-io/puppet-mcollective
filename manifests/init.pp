@@ -25,6 +25,7 @@
 # @param service_enable The enable value for the service
 # @param client Install client files on this node
 # @param server Install server files on this node
+# @param purge When true will remove unmanaged files from the $configdir/plugin.d, $configdir/policies and $libdir
 class mcollective (
   Array[String] $plugintypes,
   Array[String] $plugin_classes,
@@ -50,7 +51,8 @@ class mcollective (
   String $service_name,
   Boolean $service_enable,
   Boolean $client,
-  Boolean $server
+  Boolean $server,
+  Boolean $purge
 ) {
   $factspath = "${configdir}/facts.yaml"
 
@@ -61,4 +63,3 @@ class mcollective (
 
   include $plugin_classes - $plugin_classes_exclude
 }
-

@@ -36,6 +36,7 @@ mcollective::plugin_classes:
 
 mcollective::server: true
 mcollective::client: false
+mcollective::purge: false
 mcollective::facts_refresh_interval: 10
 mcollective::service_name: "mcollective"
 mcollective::service_ensure: "running"
