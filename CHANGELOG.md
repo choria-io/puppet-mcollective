@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/07/28|37   |Fix file name for per plugin configs and allow purging old files                                         |
 |2016/07/26|35   |Use ripienaar/mcollective-choria instead of specific modules                                             |
 |2016/07/12|31   |Improve client sub collective handling                                                                   |
 |2016/07/11|28   |Install the PuppetDB based discovery plugin                                                              |

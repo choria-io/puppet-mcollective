@@ -24,10 +24,7 @@ Components Installed / Configured
 ---------------------------------
 
   * [Choria Orchestrator](https://github.com/ripienaar/mcollective-choria) Puppet Security, NATS connector, PuppetDB discovery and Application Orchastrator
-  * [Puppet Agent](https://github.com/puppetlabs/mcollective-puppet-agent)
-  * [Package Agent](https://github.com/puppetlabs/mcollective-package-agent)
-  * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
-  * [File Manager Agent](https://github.com/puppetlabs/mcollective-filemgr-agent)
+  * [Puppet Agent](https://github.com/puppetlabs/mcollective-puppet-agent), [Package Agent](https://github.com/puppetlabs/mcollective-package-agent), [Service Agent](https://github.com/puppetlabs/mcollective-service-agent), [File Manager Agent](https://github.com/puppetlabs/mcollective-filemgr-agent)
   * [Action Policy Authorization](https://github.com/puppetlabs/mcollective-actionpolicy-auth) with default secure settings
   * Audit logs in `/var/log/puppetlabs/mcollective-audit.log` and `C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log`
   * Facts using a YAML file refreshed using Cron or Windows Scheduler
