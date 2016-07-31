@@ -66,7 +66,7 @@ define mcollective::module_plugin (
     }
   }
 
-  if $name =~ /^mcollective_agent_(.+)/ {
+  if $name =~ /^mcollective_agent_(.+)/ and $server {
     $agent_name = $1
 
     $policy_content = epp("mcollective/policy_file.epp", {
