@@ -27,109 +27,118 @@ define mcollective::module_plugin (
   Optional[String] $mode = $mcollective::plugin_mode,
   Enum["present", "absent"] $ensure = "present"
 ) {
-  if ($server and $client) {
-    $merged_conf = $config.deep_merge($client_config).deep_merge($server_config)
-    $merged_files = $common_files + $server_files + $client_files
-    $merged_directories = $common_directories + $server_directories + $client_directories
+  if $client or $server {
+    if ($server and $client) {
+      $merged_conf = $config.deep_merge($client_config).deep_merge($server_config)
+      $merged_files = $common_files + $server_files + $client_files
+      $merged_directories = $common_directories + $server_directories + $client_directories
 
-  } elsif($server) {
-    $merged_conf = $config.deep_merge($server_config)
-    $merged_files = $common_files + $server_files
-    $merged_directories = $common_directories + $server_directories
+    } elsif ($server) {
+      $merged_conf = $config.deep_merge($server_config)
+      $merged_files = $common_files + $server_files
+      $merged_directories = $common_directories + $server_directories
 
-  } elsif($client) {
-    $merged_conf = $config.deep_merge($client_config)
-    $merged_files = $common_files + $client_files
-    $merged_directories = $common_directories + $client_directories
-  }
+    } elsif ($client) {
+      $merged_conf = $config.deep_merge($client_config)
+      $merged_files = $common_files + $client_files
+      $merged_directories = $common_directories + $client_directories
+    }
 
-  if $manage_class_dependencies and !$class_dependencies.empty {
-    require $class_dependencies
-  }
+    if $manage_class_dependencies and !$class_dependencies.empty {
+      require $class_dependencies
+    }
 
-  if $manage_package_dependencies {
-    $package_dependencies.each |$pkg, $version| {
-      package{$pkg:
-        ensure => $version,
-        tag    => "mcollective_plugin_${name}_packages"
+    if $manage_package_dependencies {
+      $package_dependencies.each |$pkg, $version| {
+        package{$pkg:
+          ensure => $version,
+          tag    => "mcollective_plugin_${name}_packages"
+        }
       }
     }
-  }
 
-  if $manage_gem_dependencies {
-    $gem_dependencies.each |$gem, $version| {
-      package{$gem:
-        ensure   => $version,
-        provider => "puppet_gem",
-        tag      => "mcollective_plugin_${name}_packages"
+    if $manage_gem_dependencies {
+      $gem_dependencies.each |$gem, $version| {
+        package{$gem:
+          ensure   => $version,
+          provider => "puppet_gem",
+          tag      => "mcollective_plugin_${name}_packages"
+        }
       }
     }
-  }
 
-  if $name =~ /^mcollective_agent_(.+)/ and $server {
-    $agent_name = $1
+    if $name =~ /^mcollective_agent_(.+)/ and $server {
+      $agent_name = $1
 
-    $policy_content = epp("mcollective/policy_file.epp", {
-      "module"         => $name,
-      "policy_default" => $policy_default,
-      "policies"       => $policies,
-      "site_policies"  => $site_policies
-    })
+      $policy_content = epp("mcollective/policy_file.epp", {
+        "module"         => $name,
+        "policy_default" => $policy_default,
+        "policies"       => $policies,
+        "site_policies"  => $site_policies
+      })
 
-    file{"${configdir}/policies/${agent_name}.policy":
-      owner      => $owner,
-      group      => $group,
-      mode       => $mode,
-      content    => $policy_content
-    }
-
-    Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${configdir}/policies/${agent_name}.policy"]
-  }
-
-  unless $merged_conf.empty {
-    file{"${configdir}/plugin.d/${config_name}.cfg":
-      owner  => $owner,
-      group  => $group,
-      mode   => $mode,
-      ensure => $ensure
-    }
-
-    $merged_conf.each |$item, $value| {
-      ini_setting{"${name}-${config_name}-${item}":
-        ensure  => $ensure,
-        path    => "${configdir}/plugin.d/${config_name}.cfg",
-        setting => $item,
-        value   => $value
-      }
-
-      Package <| tag == "mcollective_plugin_${name}_packages" |> -> Ini_setting["${name}-${config_name}-${item}"]
-    }
-  }
-
-  $merged_directories.each |$file| {
-    unless defined(File["${libdir}/${file}"]) {
-      file{"${libdir}/${file}":
-        ensure  => $ensure ? {"present" => "directory", "absent" => "absent"},
+      file{"${configdir}/policies/${agent_name}.policy":
         owner   => $owner,
         group   => $group,
         mode    => $mode,
+        content => $policy_content
+      }
+
+      Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${configdir}/policies/${agent_name}.policy"]
+    }
+
+    unless $merged_conf.empty {
+      file{"${configdir}/plugin.d/${config_name}.cfg":
+        owner  => $owner,
+        group  => $group,
+        mode   => $mode,
+        ensure => $ensure
+      }
+
+      $merged_conf.each |$item, $value| {
+        ini_setting{"${name}-${config_name}-${item}":
+          ensure  => $ensure,
+          path    => "${configdir}/plugin.d/${config_name}.cfg",
+          setting => $item,
+          value   => $value
+        }
+
+        Package <| tag == "mcollective_plugin_${name}_packages" |> -> Ini_setting["${name}-${config_name}-${item}"]
+      }
+    }
+
+    $merged_directories.each |$file| {
+      unless defined(File["${libdir}/${file}"]) {
+        file{"${libdir}/${file}":
+          ensure  => $ensure ? {"present" => "directory", "absent" => "absent"},
+          owner   => $owner,
+          group   => $group,
+          mode    => $mode,
+        }
+
+        Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/${file}"]
+      }
+    }
+
+    $merged_files.each |$file| {
+      if $file =~ /agent\/(.+).rb/ {
+        $f_tag = "mcollective_agent_${1}_server"
+      } else {
+        $f_tag = undef
+      }
+
+      file{"${libdir}/${file}":
+        ensure => $ensure,
+        source => "puppet:///modules/${caller_module_name}/mcollective/${file}",
+        owner  => $owner,
+        group  => $group,
+        mode   => $mode,
+        tag    => $f_tag
       }
 
       Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/${file}"]
     }
+
+    Mcollective::Module_plugin[$name] ~> Class["mcollective::service"]
   }
-
-  $merged_files.each |$file| {
-    file{"${libdir}/${file}":
-      ensure => $ensure,
-      source => "puppet:///modules/${caller_module_name}/mcollective/${file}",
-      owner  => $owner,
-      group  => $group,
-      mode   => $mode,
-    }
-
-    Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/${file}"]
-  }
-
-  Mcollective::Module_plugin[$name] ~> Class["mcollective::service"]
 }
