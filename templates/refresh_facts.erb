@@ -1,6 +1,7 @@
 #!<%= @rubypath %>
 
 require "optparse"
+require "fileutils"
 
 opt = OptionParser.new
 opt.banner = "Store Facts in a YAML file for MCollective"
@@ -34,4 +35,4 @@ file = Tempfile.new("facter_yaml_writer")
 file.write(Facter.to_hash.to_yaml)
 file.close
 
-File.rename(file.path, @outfile)
+FileUtils.mv(file.path, @outfile)
