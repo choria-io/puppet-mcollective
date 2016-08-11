@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/08/11|     |Release 0.0.18                                                                                           |
 |2017/08/11|47   |When refreshing facts with cron, do not run facts writer on every Puppet run                             |
 |2017/08/09|43   |Correctly handle temp file renaming in cases where /tmp and /etc do not share a partition (Daniel Sung)  |
 |2017/08/01|     |Release 0.0.17                                                                                           |
