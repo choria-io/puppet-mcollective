@@ -17,16 +17,19 @@ class mcollective::facts (
     content => template("mcollective/refresh_facts.erb"),
   }
 
+  if $refresh_interval > 0 and $server {
+    $cron_ensure = "present"
+    $creates = $factspath
+  } else {
+    $cron_ensure = "absent"
+    $creates = undef # always run via puppet when opted out of cron option
+  }
+
   if $server {
     exec{"mcollective_facts_yaml_refresh":
       command => "${scriptpath} -o ${factspath}",
+      creates => $creates
     }
-  }
-
-  if $refresh_interval > 0 and $server {
-    $cron_ensure = "present"
-  } else {
-    $cron_ensure = "absent"
   }
 
   if $facts["os"]["family"] == "windows" {
