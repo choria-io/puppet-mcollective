@@ -4,7 +4,7 @@ mcollective::plugin_mode: ~
 
 mcollective::libdir: "C:/ProgramData/PuppetLabs/mcollective/plugins"
 mcollective::configdir: "C:/ProgramData/PuppetLabs/mcollective/etc"
-mcoollective::rubypath: "C:/ProgramData/PuppetLabs/puppet/bin/ruby.exe"
+mcollective::rubypath: 'C:\Program Files\Puppet Labs\Puppet\sys\ruby\bin\ruby.exe'
 
 mcollective::server_config:
   logfile: "C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective.log"
