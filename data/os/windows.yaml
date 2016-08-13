@@ -10,8 +10,3 @@ mcollective::server_config:
   logfile: "C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective.log"
   plugin.rpcaudit.logfile: "C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log"
   plugin.yaml: "C:/ProgramData/PuppetLabs/mcollective/etc/facts.yaml"
-
-mcollective_agent_puppet::server_config:
-  "command": "C:/Program Files/Puppet Labs/Puppet/bin/puppet agent"
-  "signal_daemon": false
-  "windows_service": "puppet"
