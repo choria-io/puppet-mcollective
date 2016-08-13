@@ -4,8 +4,8 @@ class mcollective::facts (
   String $configdir = $mcollective::configdir,
   String $factspath = $mcollective::factspath,
   Integer $refresh_interval = $mcollective::facts_refresh_interval,
-  String $owner = $mcollective::plugin_owner,
-  String $group = $mcollective::plugin_group,
+  Optional[String] $owner = $mcollective::plugin_owner,
+  Optional[String] $group = $mcollective::plugin_group,
   Boolean $server = $mcollective::server
 ) {
   $scriptpath = "${libdir}/refresh_facts.rb"
@@ -27,7 +27,7 @@ class mcollective::facts (
 
   if $server {
     exec{"mcollective_facts_yaml_refresh":
-      command => "${scriptpath} -o ${factspath}",
+      command => "\"${rubypath}\" \"${scriptpath}\" -o \"${factspath}\"",
       creates => $creates
     }
   }
@@ -35,8 +35,8 @@ class mcollective::facts (
   if $facts["os"]["family"] == "windows" {
     scheduled_task{"mcollective_facts_yaml_refresh":
       ensure               => $cron_ensure,
-      command              => $scriptpath,
-      arguments            => "-o ${factspath}",
+      command              => $rubypath,
+      arguments            => "'${scriptpath}' -o '${factspath}'",
       trigger              => {
         "schedule"         => "daily",
         "start_time"       => "00:00",
@@ -46,7 +46,7 @@ class mcollective::facts (
   } else {
     cron{"mcollective_facts_yaml_refresh":
       ensure  => $cron_ensure,
-      command => "${scriptpath} -o ${factspath}",
+      command => "'${rubypath}' '${scriptpath}' -o '${factspath}'",
       minute  => "*/${refresh_interval}"
     }
   }

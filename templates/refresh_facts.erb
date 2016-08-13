@@ -15,6 +15,12 @@ opt.parse!
 
 abort("Please specify a file to write to") unless @outfile
 
+require "rubygems"
+
+if Gem.win_platform?
+  $: << "C:/Program Files/Puppet Labs/Puppet/facter/lib"
+end
+
 require "yaml"
 require "puppet"
 require "facter"

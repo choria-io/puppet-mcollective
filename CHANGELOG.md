@@ -1,13 +1,17 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
-|2017/08/11|     |Release 0.0.18                                                                                           |
-|2017/08/11|47   |When refreshing facts with cron, do not run facts writer on every Puppet run                             |
-|2017/08/09|43   |Correctly handle temp file renaming in cases where /tmp and /etc do not share a partition (Daniel Sung)  |
-|2017/08/01|     |Release 0.0.17                                                                                           |
-|2017/08/01|41   |Handle cases of both client=false and server=false gracefully in module installer                        |
-|2017/08/01|41   |Uniquely tag agent ruby files to facilitate agent discovery                                              |
-|2017/07/31|39   |Install action policies only on nodes with `$server` set                                                 |
-|2017/07/28|37   |Fix file name for per plugin configs and allow purging old files                                         |
+|2016/08/13|55   |Use the correct lib dirs for facter on windows                                                           |
+|2016/08/13|54   |Correct typo on hiera data for windows                                                                   |
+|2016/08/13|53   |Correct path to the ruby executable and fix quoting                                                      |
+|2016/08/13|52   |Correct data types on mcollective::facts for windows support                                             |
+|2016/08/11|     |Release 0.0.18                                                                                           |
+|2016/08/11|47   |When refreshing facts with cron, do not run facts writer on every Puppet run                             |
+|2016/08/09|43   |Correctly handle temp file renaming in cases where /tmp and /etc do not share a partition (Daniel Sung)  |
+|2016/08/01|     |Release 0.0.17                                                                                           |
+|2016/08/01|41   |Handle cases of both client=false and server=false gracefully in module installer                        |
+|2016/08/01|41   |Uniquely tag agent ruby files to facilitate agent discovery                                              |
+|2016/07/31|39   |Install action policies only on nodes with `$server` set                                                 |
+|2016/07/28|37   |Fix file name for per plugin configs and allow purging old files                                         |
 |2016/07/26|35   |Use ripienaar/mcollective-choria instead of specific modules                                             |
 |2016/07/12|31   |Improve client sub collective handling                                                                   |
 |2016/07/11|28   |Install the PuppetDB based discovery plugin                                                              |
