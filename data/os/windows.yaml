@@ -6,6 +6,9 @@ mcollective::libdir: "C:/ProgramData/PuppetLabs/mcollective/plugins"
 mcollective::configdir: "C:/ProgramData/PuppetLabs/mcollective/etc"
 mcollective::rubypath: 'C:\Program Files\Puppet Labs\Puppet\sys\ruby\bin\ruby.exe'
 
+mcollective::config:
+  libdir: "%{hiera('mcollective::libdir')}/mcollective"
+
 mcollective::server_config:
   logfile: "C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective.log"
   plugin.rpcaudit.logfile: "C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log"

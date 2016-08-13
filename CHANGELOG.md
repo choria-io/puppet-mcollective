@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2016/08/13|     |Release 0.0.19                                                                                           |
+|2016/08/13|57   |Configure libdirs on windows and rework libdir calculations a bit towards specifically setting libdir    |
 |2016/08/13|55   |Use the correct lib dirs for facter on windows                                                           |
 |2016/08/13|54   |Correct typo on hiera data for windows                                                                   |
 |2016/08/13|53   |Correct path to the ruby executable and fix quoting                                                      |

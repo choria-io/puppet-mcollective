@@ -1,12 +1,13 @@
 class mcollective::plugin_dirs {
   $libdirs = $mcollective::plugintypes.map |$type| {
-    "${mcollective::libdir}/${type}"
+    "${mcollective::libdir}/mcollective/${type}"
   }
 
   $needed_dirs = [
     "${mcollective::configdir}/plugin.d",
     "${mcollective::configdir}/policies",
     $mcollective::libdir,
+    "${mcollective::libdir}/mcollective",
     $libdirs
   ]
 
