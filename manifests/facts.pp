@@ -8,7 +8,7 @@ class mcollective::facts (
   Optional[String] $group = $mcollective::plugin_group,
   Boolean $server = $mcollective::server
 ) {
-  $scriptpath = "${libdir}/refresh_facts.rb"
+  $scriptpath = "${libdir}/mcollective/refresh_facts.rb"
 
   file{$scriptpath:
     owner   => $owner,

@@ -108,15 +108,15 @@ define mcollective::module_plugin (
     }
 
     $merged_directories.each |$file| {
-      unless defined(File["${libdir}/${file}"]) {
-        file{"${libdir}/${file}":
+      unless defined(File["${libdir}/mcollective/${file}"]) {
+        file{"${libdir}/mcollective/${file}":
           ensure  => $ensure ? {"present" => "directory", "absent" => "absent"},
           owner   => $owner,
           group   => $group,
           mode    => $mode,
         }
 
-        Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/${file}"]
+        Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/mcollective/${file}"]
       }
     }
 
@@ -127,7 +127,7 @@ define mcollective::module_plugin (
         $f_tag = undef
       }
 
-      file{"${libdir}/${file}":
+      file{"${libdir}/mcollective/${file}":
         ensure => $ensure,
         source => "puppet:///modules/${caller_module_name}/mcollective/${file}",
         owner  => $owner,
@@ -136,7 +136,7 @@ define mcollective::module_plugin (
         tag    => $f_tag
       }
 
-      Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/${file}"]
+      Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/mcollective/${file}"]
     }
 
     Mcollective::Module_plugin[$name] ~> Class["mcollective::service"]

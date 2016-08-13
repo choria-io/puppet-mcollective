@@ -44,7 +44,7 @@ mcollective::service_enable: true
 mcollective::plugin_owner: "root"
 mcollective::plugin_group: "root"
 mcollective::plugin_mode: "0664"
-mcollective::libdir: "/opt/puppetlabs/mcollective/plugins/mcollective"
+mcollective::libdir: "/opt/puppetlabs/mcollective/plugins"
 mcollective::configdir: "/etc/puppetlabs/mcollective"
 mcollective::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
 mcollective::plugintypes:
