@@ -77,3 +77,6 @@ lookup_options:
   mcollective::server_config:
     merge:
       strategy: "deep"
+  mcollective::common_config:
+    merge:
+      strategy: "deep"
