@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2016/08/27|60   |Configure the classes file according to AIO paths                                                        |
 |2016/08/13|     |Release 0.0.19                                                                                           |
 |2016/08/13|57   |Configure libdirs on windows and rework libdir calculations a bit towards specifically setting libdir    |
 |2016/08/13|55   |Use the correct lib dirs for facter on windows                                                           |

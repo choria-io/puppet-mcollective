@@ -10,6 +10,7 @@ mcollective::common_config:
 mcollective::policy_default: "deny"
 
 mcollective::server_config:
+  classesfile: "/opt/puppetlabs/puppet/cache/state/classes.txt"
   rpcauthorization: 1
   rpcauthprovider: "action_policy"
   rpcaudit: 1
