@@ -13,4 +13,4 @@ mcollective::server_config:
   classesfile: "C:/ProgramData/PuppetLabs/puppet/cache/state/classes.txt"
   logfile: "C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective.log"
   plugin.rpcaudit.logfile: "C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log"
-  plugin.yaml: "C:/ProgramData/PuppetLabs/mcollective/etc/facts.yaml"
+  plugin.yaml: "C:/ProgramData/PuppetLabs/mcollective/etc/generated-facts.yaml"
