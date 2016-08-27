@@ -54,7 +54,7 @@ class mcollective (
   Boolean $server,
   Boolean $purge
 ) {
-  $factspath = "${configdir}/facts.yaml"
+  $factspath = "${configdir}/generated-facts.yaml"
 
   include mcollective::plugin_dirs
   include mcollective::config

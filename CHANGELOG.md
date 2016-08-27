@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2016/08/27|59   |Use a custom fact source - `generated-facts.yaml` - to improve bootstrapping                             |
 |2016/08/27|60   |Configure the classes file according to AIO paths                                                        |
 |2016/08/13|     |Release 0.0.19                                                                                           |
 |2016/08/13|57   |Configure libdirs on windows and rework libdir calculations a bit towards specifically setting libdir    |
