@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2016/08/27|63   |Deep merge mcollective::common_config                                                                    |
 |2016/08/27|59   |Use a custom fact source - `generated-facts.yaml` - to improve bootstrapping                             |
 |2016/08/27|60   |Configure the classes file according to AIO paths                                                        |
 |2016/08/13|     |Release 0.0.19                                                                                           |
