@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2016/11/10|     |Release 0.0.21                                                                                           |
+|2016/11/09|67   |Improve handling of agents like the shell one with a invalid plugin layout                               |
 |2016/08/27|     |Release 0.0.20                                                                                           |
 |2016/08/27|63   |Deep merge mcollective::common_config                                                                    |
 |2016/08/27|59   |Use a custom fact source - `generated-facts.yaml` - to improve bootstrapping                             |
