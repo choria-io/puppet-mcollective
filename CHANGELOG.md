@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/01/03|69   |Adjust dependencies so that librarian will install the module                                            |
 |2016/11/10|     |Release 0.0.21                                                                                           |
 |2016/11/09|67   |Improve handling of agents like the shell one with a invalid plugin layout                               |
 |2016/08/27|     |Release 0.0.20                                                                                           |
