@@ -10,7 +10,12 @@ Facter.add(:mcollective) do
       }
 
       ["client", "server"].each do |config|
-        configfile = "/etc/puppetlabs/mcollective/%s.cfg" % config
+        if MCollective::Util.windows?
+          configfile = File.join(MCollective::Util.windows_prefix, "etc", "%s.cfg" % config)
+        else
+          configfile = "/etc/puppetlabs/mcollective/%s.cfg" % config
+        end
+
         mconfig = MCollective::Config.instance
 
         if File.readable?(configfile)

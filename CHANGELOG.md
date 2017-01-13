@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/01/13|74   |Resolve issues with Windows paths in fact and libdir                                                     |
 |2017/01/03|     |Release 0.0.22                                                                                           |
 |2017/01/03|69   |Adjust dependencies so that librarian will install the module                                            |
 |2016/11/10|     |Release 0.0.21                                                                                           |
