@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/01/29|78   |Convert `-` in module names to `_`                                                                       |
 |2017/01/13|     |Release 0.0.23                                                                                           |
 |2017/01/13|74   |Resolve issues with Windows paths in fact and libdir                                                     |
 |2017/01/03|     |Release 0.0.22                                                                                           |
