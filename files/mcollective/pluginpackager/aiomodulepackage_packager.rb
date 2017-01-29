@@ -45,7 +45,10 @@ module MCollective
         end
       end
       def module_name
-        "mcollective_%s_%s" % [@plugin.plugintype.downcase, @plugin.metadata[:name].downcase]
+        "mcollective_%s_%s" % [
+          @plugin.plugintype.downcase,
+          @plugin.metadata[:name].downcase.gsub("-", "_")
+        ]
       end
 
       def module_file_name
