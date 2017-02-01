@@ -28,7 +28,8 @@ class mcollective::facts (
   if $server {
     exec{"mcollective_facts_yaml_refresh":
       command => "\"${rubypath}\" \"${scriptpath}\" -o \"${factspath}\"",
-      creates => $creates
+      creates => $creates,
+      require => Class["mcollective::service"]
     }
   }
 
