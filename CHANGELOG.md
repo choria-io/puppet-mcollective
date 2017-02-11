@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/02/11|     |Release 0.0.24 and move to `choria-io` project                                                           |
 |2017/02/01|81   |Run the fact generator after the service is up                                                           |
 |2017/01/29|78   |Convert `-` in module names to `_`                                                                       |
 |2017/01/13|     |Release 0.0.23                                                                                           |
