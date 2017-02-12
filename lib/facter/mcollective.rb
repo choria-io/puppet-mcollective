@@ -32,7 +32,7 @@ Facter.add(:mcollective) do
       end
 
       result
-    rescue
+    rescue StandardError, LoadError
       {"error" => "%s: %s" % [$!.class, $!.to_s]}
     end
   end
