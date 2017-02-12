@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/02/11|72   |When mcollective is not available in the RUBYLIB correctly handle the LoadError                          |
 |2017/02/11|80   |Set the `project_page` in the generated modules when packaging a plugin                                  |
 |2017/02/11|71   |Enable the `choria` auditing plugin by default                                                           |
 |2017/02/11|     |Release 0.0.24 and move to `choria-io` project                                                           |
