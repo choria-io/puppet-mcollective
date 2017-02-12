@@ -14,7 +14,7 @@ mcollective::server_config:
   rpcauthorization: 1
   rpcauthprovider: "action_policy"
   rpcaudit: 1
-  rpcauditprovider: "logfile"
+  rpcauditprovider: "choria"
   plugin.rpcaudit.logfile: "/var/log/puppetlabs/mcollective-audit.log"
   factsource: "yaml"
   plugin.yaml: "/etc/puppetlabs/mcollective/generated-facts.yaml"
