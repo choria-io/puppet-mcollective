@@ -39,10 +39,11 @@ class mcollective::facts (
   }
 
   if $facts["os"]["family"] == "windows" {
+    # on windows task scheduler prevent dupes already so no need to handle the PID here
     scheduled_task{"mcollective_facts_yaml_refresh":
       ensure               => $cron_ensure,
       command              => $rubypath,
-      arguments            => "'${scriptpath}' -o '${factspath}' ${factspid}",
+      arguments            => "'${scriptpath}' -o '${factspath}'",
       trigger              => {
         "schedule"         => "daily",
         "start_time"       => "00:00",
