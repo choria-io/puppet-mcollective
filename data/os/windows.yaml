@@ -5,6 +5,7 @@ mcollective::plugin_mode: ~
 mcollective::libdir: "C:/ProgramData/PuppetLabs/mcollective/plugins"
 mcollective::configdir: "C:/ProgramData/PuppetLabs/mcollective/etc"
 mcollective::rubypath: 'C:\Program Files\Puppet Labs\Puppet\sys\ruby\bin\ruby.exe'
+mcollective::facts_pidfile: "C:/ProgramData/PuppetLabs/mcollective/var/mcollective-facts_refresh.pid"
 
 # after PUP-7061 this can use lookup("mcollective::libdir") here
 mcollective::common_config:
