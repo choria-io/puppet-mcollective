@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/02/13|     |Release 0.0.25                                                                                           |
+|2017/02/13|89   |Prevent multiple instances of the fact refresher from running                                            |
 |2017/02/11|72   |When mcollective is not available in the RUBYLIB correctly handle the LoadError                          |
 |2017/02/11|80   |Set the `project_page` in the generated modules when packaging a plugin                                  |
 |2017/02/11|71   |Enable the `choria` auditing plugin by default                                                           |
