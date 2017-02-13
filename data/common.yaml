@@ -41,6 +41,7 @@ mcollective::server: true
 mcollective::client: false
 mcollective::purge: false
 mcollective::facts_refresh_interval: 10
+mcollective::facts_pidfile: "/var/run/puppetlabs/mcollective-facts_refresh.pid"
 mcollective::service_name: "mcollective"
 mcollective::service_ensure: "running"
 mcollective::service_enable: true

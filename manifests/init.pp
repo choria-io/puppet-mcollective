@@ -14,6 +14,7 @@
 # @param client_collectives A list of collectives the client has access to, defaults to the same as the node
 # @param main_collective The main collective to use, last in the list of `$collectives` by default
 # @param client_main_collective The main collective to use on the client, `$main_collective` by default
+# @param facts_pidfile PID file path for locking fact refresh to a single execution
 # @param plugin_owner The default user who will own plugin files
 # @param plugin_group The default group who will own plugin files
 # @param plugin_mode The default mode plugin files will have
@@ -41,6 +42,7 @@ class mcollective (
   Array[Mcollective::Collective] $client_collectives = $collectives,
   Optional[Mcollective::Collective] $main_collective = undef,
   Optional[Mcollective::Collective] $client_main_collective = undef,
+  Optional[String] $facts_pidfile,
   Optional[String] $plugin_owner,
   Optional[String] $plugin_group,
   Optional[String] $plugin_mode,
