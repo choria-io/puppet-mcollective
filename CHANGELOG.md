@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/03/21|92   |Add utility to create config files                                                                       |
 |2017/02/13|     |Release 0.0.25                                                                                           |
 |2017/02/13|89   |Prevent multiple instances of the fact refresher from running                                            |
 |2017/02/11|72   |When mcollective is not available in the RUBYLIB correctly handle the LoadError                          |

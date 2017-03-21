@@ -29,21 +29,13 @@ class mcollective::config {
   $server_config = $mcollective::common_config + $server_collectives + $mcollective::server_config
   $client_config = $mcollective::common_config + $client_collectives + $mcollective::client_config
 
-  $server_config.each |$item, $value| {
-    ini_setting{"${name}_server_${item}":
-      path    => "${mcollective::configdir}/server.cfg",
-      setting => $item,
-      value   => $value,
-      notify  => Class["mcollective::service"]
-    }
+  mcollective::config_file{"${mcollective::configdir}/server.cfg":
+    settings => $server_config,
+    notify   => Class["mcollective::service"]
   }
 
-  $client_config.each |$item, $value| {
-    ini_setting{"${name}_client_${item}":
-      path    => "${mcollective::configdir}/client.cfg",
-      setting => $item,
-      value   => $value
-    }
+  mcollective::config_file{"${mcollective::configdir}/client.cfg":
+    settings => $client_config,
   }
 
   $policy_content = epp("mcollective/policy_file.epp", {
@@ -54,9 +46,22 @@ class mcollective::config {
   })
 
   file{"${mcollective::configdir}/policies/rpcutil.policy":
-    owner      => $mcollective::plugin_owner,
-    group      => $mcollective::plugin_group,
-    mode       => $mcollective::plugin_mode,
-    content    => $policy_content
+    owner   => $mcollective::plugin_owner,
+    group   => $mcollective::plugin_group,
+    mode    => $mcollective::plugin_mode,
+    content => $policy_content,
+    notify  => Class["mcollective::service"]
+  }
+
+  file{"${mcollective::configdir}/federation":
+    owner  => $mcollective::plugin_owner,
+    group  => $mcollective::plugin_group,
+    mode   => $mcollective::plugin_mode,
+    ensure => "directory",
+    source  => "puppet:///modules/mcollective/empty",
+    ignore  => ".keep",
+    purge   => true,
+    recurse => true,
+    force   => true
   }
 }
