@@ -57,11 +57,6 @@ class mcollective::config {
     owner  => $mcollective::plugin_owner,
     group  => $mcollective::plugin_group,
     mode   => $mcollective::plugin_mode,
-    ensure => "directory",
-    source  => "puppet:///modules/mcollective/empty",
-    ignore  => ".keep",
-    purge   => true,
-    recurse => true,
-    force   => true
+    ensure => "directory"
   }
 }
