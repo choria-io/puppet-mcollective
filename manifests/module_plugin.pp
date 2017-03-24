@@ -100,7 +100,8 @@ define mcollective::module_plugin (
           ensure  => $ensure,
           path    => "${configdir}/plugin.d/${config_name}.cfg",
           setting => $item,
-          value   => $value
+          value   => $value,
+          require => File["${configdir}/plugin.d/${config_name}.cfg"]
         }
 
         Package <| tag == "mcollective_plugin_${name}_packages" |> -> Ini_setting["${name}-${config_name}-${item}"]
