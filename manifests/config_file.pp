@@ -10,9 +10,9 @@
 # @param content When set manages the entire file
 define mcollective::config_file (
   Hash $settings = {},
-  String $owner = $mcollective::plugin_owner,
-  String $group = $mcollective::plugin_group,
-  String $mode = $mcollective::plugin_mode,
+  Optional[String] $owner = $mcollective::plugin_owner,
+  Optional[String] $group = $mcollective::plugin_group,
+  Optional[String] $mode = $mcollective::plugin_mode,
   Optional[String] $content = undef,
   Enum["present", "absent"] $ensure = "present"
 ) {
