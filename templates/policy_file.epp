@@ -1,0 +1,21 @@
+<%- |
+  String $module,
+  String $policy_default,
+  Array[Mcollective::Policy] $policies,
+  Array[Mcollective::Policy] $site_policies
+| -%>
+policy default <%= $policy_default %>
+<%- if !$policies.empty { -%>
+
+# <%= $module %> module specific policies
+<%- $policies.each |$policy| { -%>
+<%=      [$policy["action"], $policy["callers"], $policy["actions"], $policy["facts"], $policy["classes"]].delete_undef_values.join("\t") %>
+<%-   } -%>
+<%- } -%>
+<%- if !$site_policies.empty { -%>
+
+# site wide policies
+<%-   $site_policies.each |$policy| { -%>
+<%=      [$policy["action"], $policy["callers"], $policy["actions"], $policy["facts"], $policy["classes"]].delete_undef_values.join("\t") %>
+<%-   } -%>
+<%- } -%>

@@ -1,0 +1,85 @@
+---
+mcollective::collectives:
+  - "mcollective"
+
+mcollective::common_config:
+  securityprovider: "choria"
+  identity: "%{trusted.certname}"
+  connector: "nats"
+
+mcollective::policy_default: "deny"
+
+mcollective::server_config:
+  classesfile: "/opt/puppetlabs/puppet/cache/state/classes.txt"
+  rpcauthorization: 1
+  rpcauthprovider: "action_policy"
+  rpcaudit: 1
+  rpcauditprovider: "choria"
+  plugin.rpcaudit.logfile: "/var/log/puppetlabs/mcollective-audit.log"
+  factsource: "yaml"
+  plugin.yaml: "/etc/puppetlabs/mcollective/generated-facts.yaml"
+  registerinterval: 10
+  registration: "Choria"
+
+mcollective::rpcutil_policies:
+  - action: "allow"
+    actions: "ping"
+    callers: "*"
+    facts: "*"
+    classes: "*"
+
+mcollective::plugin_classes:
+  - "mcollective::packager"
+  - "mcollective_choria"
+  - "mcollective_agent_puppet"
+  - "mcollective_agent_service"
+  - "mcollective_agent_package"
+  - "mcollective_agent_filemgr"
+  - "mcollective_util_actionpolicy"
+
+mcollective::server: true
+mcollective::client: false
+mcollective::purge: false
+mcollective::facts_refresh_interval: 10
+mcollective::facts_pidfile: "/var/run/puppetlabs/mcollective-facts_refresh.pid"
+mcollective::service_name: "mcollective"
+mcollective::service_ensure: "running"
+mcollective::service_enable: true
+mcollective::plugin_owner: "root"
+mcollective::plugin_group: "root"
+mcollective::plugin_mode: "0664"
+mcollective::libdir: "/opt/puppetlabs/mcollective/plugins"
+mcollective::configdir: "/etc/puppetlabs/mcollective"
+mcollective::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
+mcollective::plugintypes:
+  - "agent"
+  - "aggregate"
+  - "application"
+  - "audit"
+  - "connector"
+  - "data"
+  - "discovery"
+  - "registration"
+  - "security"
+  - "util"
+  - "validator"
+  - "pluginpackager"
+
+lookup_options:
+  mcollective::collectives:
+    merge: "unique"
+  mcollective::plugin_classes:
+    merge: "unique"
+  mcollective::site_policies:
+    merge: "unique"
+  mcollective::rpcutil_policies:
+    merge: "unique"
+  mcollective::client_config:
+    merge:
+      strategy: "deep"
+  mcollective::server_config:
+    merge:
+      strategy: "deep"
+  mcollective::common_config:
+    merge:
+      strategy: "deep"

@@ -1,0 +1,20 @@
+{
+  "name": "<%= @plugin.vendor %>-<%= module_name %>",
+  "version": "<%= version %>",
+  "author": "<%= @plugin.metadata[:author] %>",
+  "license": "<%= @plugin.metadata[:license] %>",
+  "summary": "<%= @plugin.metadata[:description] %>",
+  "source": "<%= @plugin.metadata[:url] %>",
+  "project_page": "<%= @plugin.metadata[:url] %>",
+  "dependencies": [
+    {"name": "choria/mcollective", "version_requirement": ">= 0.0.24 < 2.0.0"}
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.5.0"
+    }
+  ],
+  "data_provider": "hiera"
+}
+

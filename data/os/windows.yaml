@@ -1,0 +1,18 @@
+mcollective::plugin_owner: ~
+mcollective::plugin_group: ~
+mcollective::plugin_mode: ~
+
+mcollective::libdir: "C:/ProgramData/PuppetLabs/mcollective/plugins"
+mcollective::configdir: "C:/ProgramData/PuppetLabs/mcollective/etc"
+mcollective::rubypath: 'C:\Program Files\Puppet Labs\Puppet\sys\ruby\bin\ruby.exe'
+mcollective::facts_pidfile: ~
+
+# after PUP-7061 this can use lookup("mcollective::libdir") here
+mcollective::common_config:
+  libdir: "C:/ProgramData/PuppetLabs/mcollective/plugins"
+
+mcollective::server_config:
+  classesfile: "C:/ProgramData/PuppetLabs/puppet/cache/state/classes.txt"
+  logfile: "C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective.log"
+  plugin.rpcaudit.logfile: "C:/ProgramData/PuppetLabs/mcollective/var/log/mcollective-audit.log"
+  plugin.yaml: "C:/ProgramData/PuppetLabs/mcollective/etc/generated-facts.yaml"
