@@ -27,6 +27,7 @@
 # @param client Install client files on this node
 # @param server Install server files on this node
 # @param purge When true will remove unmanaged files from the $configdir/plugin.d, $configdir/policies and $libdir
+# @param gem_source where to find gems, useful for local gem mirrors
 class mcollective (
   Array[String] $plugintypes,
   Array[String] $plugin_classes,
@@ -54,7 +55,8 @@ class mcollective (
   Boolean $service_enable,
   Boolean $client,
   Boolean $server,
-  Boolean $purge
+  Boolean $purge,
+  Optional[String] $gem_source = undef
 ) {
   $factspath = "${configdir}/generated-facts.yaml"
 
