@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/04/27|98   |Support local gem mirrors via the `gem_source` property                                                  |
 |2017/03/28|     |Release 0.0.26                                                                                           |
 |2017/03/24|95   |Ensure the policy file exist before the ini settings are attempted                                       |
 |2017/03/21|92   |Add utility to create config files                                                                       |

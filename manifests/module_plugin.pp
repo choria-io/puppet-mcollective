@@ -62,6 +62,7 @@ define mcollective::module_plugin (
         package{$gem:
           ensure   => $version,
           provider => "puppet_gem",
+          source   => $mcollective::gem_source,
           tag      => "mcollective_plugin_${name}_packages"
         }
       }
