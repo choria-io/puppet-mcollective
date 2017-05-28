@@ -105,8 +105,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.5.0"
+      "version_requirement": ">= 4.9.0"
     }
-  ],
-  "data_provider": "hiera"
+  ]
 }
