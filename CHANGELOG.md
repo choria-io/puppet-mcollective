@@ -1,5 +1,9 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/06/01|     |Release 0.0.26                                                                                           |
+|2017/06/01|104  |Improve README template for generated modules                                                            |
+|2017/06/01|103  |Remove deprecation warnings for generated modules on newer Puppet                                        |
+|2017/05/28|102  |Remove deprecation warnings on newer Puppet                                                              |
 |2017/04/27|98   |Support local gem mirrors via the `gem_source` property                                                  |
 |2017/03/28|     |Release 0.0.26                                                                                           |
 |2017/03/24|95   |Ensure the policy file exist before the ini settings are attempted                                       |
