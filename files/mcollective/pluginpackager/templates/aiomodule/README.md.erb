@@ -10,7 +10,7 @@
 
 <%= @plugin.metadata[:description] %>
 
-The <%= module_name %> module is based on the source from <%= @plugin.metadata[:url] %>.
+The <%= module_name %> module is generated automatically, based on the source from <%= @plugin.metadata[:url] %>.
 <%- if @plugin.plugintype == "Agent" -%>
 <%-
       ddl = DDL.new("package", :agent, false)
@@ -64,3 +64,9 @@ For a full list of possible configuration settings see the module [source reposi
   * `<%= module_name %>::client` - installs client files when true - defaults to `$mcollective::client`
   * `<%= module_name %>::server` - installs server files when true - defaults to `$mcollective::server`
   * `<%= module_name %>::ensure` - `present` or `absent`
+
+## Development:
+
+To contribute to this MCollective plugin please visit <%= @plugin.metadata[:url] %>.
+
+This module was generated using the Choria Plugin Packager based on templates found at the [GitHub Project](https://github.com/choria-io/).
