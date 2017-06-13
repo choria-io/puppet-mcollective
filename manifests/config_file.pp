@@ -1,8 +1,5 @@
 # Utility to create mcollective config files
 #
-# Can either manipulate an existing config file
-# via ini settings or manage a whole file
-#
 # @param settings hash of settings to add via ini_setting
 # @param owner File ownership - only used when content is set
 # @param group File group ownership - only used when content is set
@@ -17,20 +14,15 @@ define mcollective::config_file (
   Enum["present", "absent"] $ensure = "present"
 ) {
   if $content {
-    file{$name:
-      owner   => $owner,
-      group   => $group,
-      mode    => $mode,
-      content => $content,
-      ensure  => $ensure
-    }
+    $body = $content
   } else {
-    $settings.each |$item, $value| {
-      ini_setting{"${name}_${item}":
-        path    => $name,
-        setting => $item,
-        value   => $value
-      }
-    }
+    $body = mcollective::hash2config($settings)
+  }
+  file{$name:
+    owner   => $owner,
+    group   => $group,
+    mode    => $mode,
+    content => $body,
+    ensure  => $ensure
   }
 }
