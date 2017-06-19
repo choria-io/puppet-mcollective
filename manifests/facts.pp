@@ -41,12 +41,12 @@ class mcollective::facts (
   if $facts["os"]["family"] == "windows" {
     # on windows task scheduler prevent dupes already so no need to handle the PID here
     scheduled_task{"mcollective_facts_yaml_refresh":
-      ensure               => $cron_ensure,
-      command              => $rubypath,
-      arguments            => "'${scriptpath}' -o '${factspath}'",
-      trigger              => {
+      ensure    => $cron_ensure,
+      command   => $rubypath,
+      arguments => "'${scriptpath}' -o '${factspath}'",
+      trigger   => {
         "schedule"         => "daily",
-        "start_time"       => "00:00",
+        "start_time"       => "00:${sprintf("%02d", fqdn_rand($refresh_interval, 'facts cronjob'))}",
         "minutes_interval" => $refresh_interval
       }
     }
@@ -54,7 +54,7 @@ class mcollective::facts (
     cron{"mcollective_facts_yaml_refresh":
       ensure  => $cron_ensure,
       command => "'${rubypath}' '${scriptpath}' -o '${factspath}' ${factspid}",
-      minute  => "*/${refresh_interval}"
+      minute  => mcollective::crontimes(fqdn_rand($refresh_interval, 'facts cronjob'), $refresh_interval, 60)
     }
   }
 }
