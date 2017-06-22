@@ -6,6 +6,9 @@ mcollective::common_config:
   securityprovider: "choria"
   identity: "%{trusted.certname}"
   connector: "nats"
+  main_collective: "mcollective"
+  collectives: "mcollective"
+  libdir: "/opt/puppetlabs/mcollective/plugins"
 
 mcollective::policy_default: "deny"
 
@@ -20,6 +23,13 @@ mcollective::server_config:
   plugin.yaml: "/etc/puppetlabs/mcollective/generated-facts.yaml"
   registerinterval: 10
   registration: "Choria"
+  logfile: "/var/log/puppetlabs/mcollective.log"
+  daemonize: 1
+
+mcollective::client_config:
+  logger_type: "console"
+  loglevel: "warn"
+  connection_timeout: "3"
 
 mcollective::rpcutil_policies:
   - action: "allow"
