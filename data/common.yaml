@@ -6,9 +6,6 @@ mcollective::common_config:
   securityprovider: "choria"
   identity: "%{trusted.certname}"
   connector: "nats"
-  main_collective: "mcollective"
-  collectives: "mcollective"
-  libdir: "/opt/puppetlabs/mcollective/plugins"
 
 mcollective::policy_default: "deny"
 
