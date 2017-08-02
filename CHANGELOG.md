@@ -1,6 +1,10 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
-|2017/06/01|     |Release 0.0.26                                                                                           |
+|2017/08/02|     |Release 0.0.28                                                                                           |
+|2017/06/22|111  |Purge unmanaged config items from the managed config files                                               |
+|2017/06/19|113  |Randomize the start time of the facts cron job                                                           |
+|2017/06/12|110  |Add support for OS X                                                                                     |
+|2017/06/01|     |Release 0.0.27                                                                                           |
 |2017/06/01|104  |Improve README template for generated modules                                                            |
 |2017/06/01|103  |Remove deprecation warnings for generated modules on newer Puppet                                        |
 |2017/05/28|102  |Remove deprecation warnings on newer Puppet                                                              |
