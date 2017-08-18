@@ -12,9 +12,10 @@ module MCollective
 
       def create_packages
         assert_new_enough_puppet
+        validate_environment
 
         begin
-          puts("Building AIO module %s" % module_name)
+          puts("Building Choria module %s" % module_name)
 
           @tmpdir = Dir.mktmpdir('mcollective_packager')
 
@@ -133,6 +134,11 @@ module MCollective
           STDERR.puts("Could not render template %s to %s" % [infile, outfile])
           raise
         end
+      end
+
+      def validate_environment
+        raise("Supplying a vendor is required, please use --vendor") if @plugin.vendor == "Puppet Labs"
+        raise("Vendor names may not have a space in them, please specify a valid vendor using --vendor") if @plugin.vendor.match(" ")
       end
 
       def assert_new_enough_puppet
