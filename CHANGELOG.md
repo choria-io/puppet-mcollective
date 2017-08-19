@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/08/19|     |Release 0.0.29                                                                                           |
 |2017/08/18|123  |Ensure a valid `--vendor` is passed when building modules                                                |
 |2017/08/02|     |Release 0.0.28                                                                                           |
 |2017/06/22|111  |Purge unmanaged config items from the managed config files                                               |
