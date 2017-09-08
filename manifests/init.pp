@@ -21,6 +21,9 @@
 # @param policy_default When managing plugin policies this will be the default allow/deny
 # @param site_policies Policies to apply to all agents after any module specific policies
 # @param rpcutil_policies Policies to apply to the special rpcutil agent
+# @param manage_package Install mcollective package on this node
+# @param package_name The name of the package to install if manage_package is enabled
+# @param package_ensure Ensure value for the package
 # @param service_ensure Ensure value for the service
 # @param service_name The mcollective service name to notify and manage
 # @param service_enable The enable value for the service
@@ -50,6 +53,9 @@ class mcollective (
   Mcollective::Policy_action $policy_default,
   Array[Mcollective::Policy] $site_policies = [],
   Array[Mcollective::Policy] $rpcutil_policies = [],
+  Boolean $manage_package,
+  Enum["present", "latest"] $package_ensure,
+  String $package_name,
   Enum["stopped", "running"] $service_ensure,
   String $service_name,
   Boolean $service_enable,
@@ -60,6 +66,9 @@ class mcollective (
 ) {
   $factspath = "${configdir}/generated-facts.yaml"
 
+  if $mcollective::manage_package {
+    include mcollective::package
+  }
   include mcollective::plugin_dirs
   include mcollective::config
   include mcollective::facts

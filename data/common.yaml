@@ -44,6 +44,9 @@ mcollective::plugin_classes:
   - "mcollective_agent_filemgr"
   - "mcollective_util_actionpolicy"
 
+mcollective::manage_package: false
+mcollective::package_name: "mcollective"
+mcollective::package_ensure: "present"
 mcollective::server: true
 mcollective::client: false
 mcollective::purge: false
