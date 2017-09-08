@@ -13,7 +13,14 @@ Facter.add(:mcollective) do
         if MCollective::Util.windows?
           configfile = File.join(MCollective::Util.windows_prefix, "etc", "%s.cfg" % config)
         else
-          configfile = "/etc/puppetlabs/mcollective/%s.cfg" % config
+          [
+            "/etc/puppetlabs/mcollective/%s.cfg",
+            "/usr/local/etc/mcollective/%s.cfg",
+            "/etc/mcollective/%s.cfg",
+          ].each do |path|
+            configfile = path % config
+            break if File.exists?(configfile)
+          end
         end
 
         mconfig = MCollective::Config.instance
