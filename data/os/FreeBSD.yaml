@@ -1,2 +1,3 @@
 ---
 mcollective::plugin_group: wheel
+mcollective::service_name: mcollectived
