@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/09/21|     |Release 0.1.0                                                                                            |
+|2017/09/08|128-134|Support FreeBSD                                                                                        |
+|2017/09/08|126  |Improve unixlike behaviour in plugin permissions                                                         |
 |2017/08/19|     |Release 0.0.29                                                                                           |
 |2017/08/18|123  |Ensure a valid `--vendor` is passed when building modules                                                |
 |2017/08/02|     |Release 0.0.28                                                                                           |
