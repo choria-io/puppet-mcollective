@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/10/18|138  |Allow plugins to supply additional Puppet files to copy into modules                                     |
 |2017/09/21|     |Release 0.1.0                                                                                            |
 |2017/09/08|128-134|Support FreeBSD                                                                                        |
 |2017/09/08|126  |Improve unixlike behaviour in plugin permissions                                                         |
