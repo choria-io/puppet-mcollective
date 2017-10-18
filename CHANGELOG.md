@@ -1,5 +1,6 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/10/18|     |Release 0.2.0                                                                                            |
 |2017/10/18|140  |Fix gathering mcollective facts from the fact cache builder                                              |
 |2017/10/18|138  |Allow plugins to supply additional Puppet files to copy into modules                                     |
 |2017/09/21|     |Release 0.1.0                                                                                            |
