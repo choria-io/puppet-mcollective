@@ -22,6 +22,7 @@ module MCollective
           make_module_dirs
           copy_module_files
           render_templates
+          copy_additional_files
           run_build
           move_package
 
@@ -77,7 +78,7 @@ module MCollective
       end
 
       def module_override_data
-        YAML.load_file(".plugin.yaml")
+        YAML.safe_load(File.read(".plugin.yaml"))
       rescue
         {}
       end
@@ -97,6 +98,14 @@ module MCollective
       def make_module_dirs
         ["data", "manifests", "files/mcollective"].each do |dir|
           FileUtils.mkdir_p(File.join(@tmpdir, dir))
+        end
+      end
+
+      def copy_additional_files
+        if File.exist?("puppet")
+          Dir.glob("puppet/*").each do |file|
+            FileUtils.cp_r(file, @tmpdir)
+          end
         end
       end
 
