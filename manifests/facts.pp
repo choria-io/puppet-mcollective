@@ -20,9 +20,11 @@ class mcollective::facts (
 
   if $refresh_interval > 0 and $server {
     $cron_ensure = "present"
+    $cron_offset = "00:${sprintf("%02d", fqdn_rand($refresh_interval, 'facts cronjob'))}"
     $creates = $factspath
   } else {
     $cron_ensure = "absent"
+    $cron_offset = "00:00"
     $creates = undef # always run via puppet when opted out of cron option
   }
 
@@ -46,7 +48,7 @@ class mcollective::facts (
       arguments => "'${scriptpath}' -o '${factspath}'",
       trigger   => {
         "schedule"         => "daily",
-        "start_time"       => "00:${sprintf("%02d", fqdn_rand($refresh_interval, 'facts cronjob'))}",
+        "start_time"       => $cron_offset,
         "minutes_interval" => $refresh_interval
       }
     }
