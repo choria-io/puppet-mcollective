@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2017/11/15|     |Release 0.2.1                                                                                            |
+|2017/10/31|143  |Fix the ability to remove the facts cron from windows                                                    |
 |2017/10/18|     |Release 0.2.0                                                                                            |
 |2017/10/18|140  |Fix gathering mcollective facts from the fact cache builder                                              |
 |2017/10/18|138  |Allow plugins to supply additional Puppet files to copy into modules                                     |
