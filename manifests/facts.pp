@@ -21,10 +21,12 @@ class mcollective::facts (
   if $refresh_interval > 0 and $server {
     $cron_ensure = "present"
     $cron_offset = "00:${sprintf("%02d", fqdn_rand($refresh_interval, 'facts cronjob'))}"
+    $cron_minutes = mcollective::crontimes(fqdn_rand($refresh_interval, 'facts cronjob'), $refresh_interval, 60)
     $creates = $factspath
   } else {
     $cron_ensure = "absent"
     $cron_offset = "00:00"
+    $cron_minutes = "0"
     $creates = undef # always run via puppet when opted out of cron option
   }
 
@@ -56,7 +58,7 @@ class mcollective::facts (
     cron{"mcollective_facts_yaml_refresh":
       ensure  => $cron_ensure,
       command => "'${rubypath}' '${scriptpath}' -o '${factspath}' ${factspid}",
-      minute  => mcollective::crontimes(fqdn_rand($refresh_interval, 'facts cronjob'), $refresh_interval, 60)
+      minute  => $cron_minutes
     }
   }
 }
