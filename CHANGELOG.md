@@ -1,5 +1,9 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2018/02/25|     |Release 0.4.0                                                                                            |
+|2018/02/25|155  |Update `stdlib` dependency                                                                               |
+|2018/02/02|152  |Ensure the `crontimes` function is not called when disabling the cronjob                                 |
+|2018/01/04|151  |Remove dependency on the `mcollective_choria` module to avoid cycles in Librarian Puppet                 |
 |2017/12/21|     |Release 0.3.0                                                                                            |
 |2017/12/20|148  |Arch Linux support                                                                                       |
 |2017/11/15|     |Release 0.2.1                                                                                            |
