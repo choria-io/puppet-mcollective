@@ -30,7 +30,7 @@ Facter.add(:mcollective) do
           mconfig.set_config_defaults(configfile)
           mconfig.loadconfig(configfile)
 
-          result[config]["libdir"] = mconfig.libdir
+          result[config]["libdir"] = mconfig.libdir.dup
           result[config]["connector"] = mconfig.connector.downcase
           result[config]["securityprovider"] = mconfig.securityprovider.downcase
           result[config]["collectives"] = mconfig.collectives
