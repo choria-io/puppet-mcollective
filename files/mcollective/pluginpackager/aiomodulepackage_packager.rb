@@ -59,7 +59,7 @@ module MCollective
 
       def dirlist(type)
         @plugin.packagedata[type][:files].map do |file|
-          file.gsub(/^\.\//, "") if File.directory?(file)
+          file.gsub(/^\.\/lib\/mcollective\//, "").gsub(/^\.\//, "") if File.directory?(file)
         end.compact
       rescue
         []
@@ -67,7 +67,7 @@ module MCollective
 
       def filelist(type)
         @plugin.packagedata[type][:files].map do |file|
-          file.gsub(/^\.\//, "") unless File.directory?(file)
+          file.gsub(/^\.\/lib\/mcollective\//, "").gsub(/^\.\//, "") unless File.directory?(file)
         end.compact
       rescue
         []
