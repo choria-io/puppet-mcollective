@@ -21,6 +21,7 @@ module MCollective
 
           make_module_dirs
           copy_module_files
+          generate_agent_json_ddls
           render_templates
           copy_additional_files
           run_build
@@ -46,6 +47,7 @@ module MCollective
           @plugin.metadata[:version]
         end
       end
+
       def module_name
         "mcollective_%s_%s" % [
           @plugin.plugintype.downcase,
@@ -117,6 +119,36 @@ module MCollective
 
             FileUtils.mkdir_p(dest_dir) unless File.directory?(dest_dir)
             FileUtils.cp(file, dest_dir) if File.file?(file)
+          end
+        end
+      end
+
+      def generate_agent_json_ddls
+        agent_dir = File.expand_path(File.join(@tmpdir, "files", "mcollective", "agent"))
+
+        if File.directory?(agent_dir)
+          Dir.glob(File.join(agent_dir, "*.ddl")) do |file|
+            agent_name = File.basename(file, ".ddl")
+            json_file = File.join(agent_dir, "%s.json" % agent_name)
+
+            ddl = DDL.new(agent_name, :agent, false)
+            ddl.instance_eval(File.read(file))
+
+            data = {
+              "schema" => "https://choria.io/schemas/mcorpc/agent:1.json",
+              "metadata" => ddl.meta,
+              "actions" => [],
+            }
+
+            ddl.actions.sort.each do |action|
+              data["actions"] << ddl.action_interface(action)
+            end
+
+            File.open(json_file, "w") do |jddl|
+              jddl.print(JSON.pretty_generate(data))
+            end
+
+            @plugin.packagedata[:common][:files] << "agent/%s.json" % agent_name
           end
         end
       end
