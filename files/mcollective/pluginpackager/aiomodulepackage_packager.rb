@@ -135,7 +135,7 @@ module MCollective
             ddl.instance_eval(File.read(file))
 
             data = {
-              "schema" => "https://choria.io/schemas/mcorpc/agent:1.json",
+              "$schema" => "https://choria.io/schemas/mcorpc/agent:1.json",
               "metadata" => ddl.meta,
               "actions" => [],
             }
