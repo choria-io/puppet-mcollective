@@ -1,9 +1,9 @@
 {
   "name": "choria-mcollective",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
-  "summary": "Configure the Puppet AIO MCollective",
+  "summary": "Configure MCollective as found in the Puppet Agent",
   "source": "https://github.com/choria-io/puppet-mcollective",
   "project_page": "https://github.com/choria-io/puppet-mcollective",
   "issues_url": "https://github.com/choria-io/puppet-mcollective/issues",
@@ -112,7 +112,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.9.0"
+      "version_requirement": ">= 4.9.0 < 6.0.0"
     }
   ]
 }
