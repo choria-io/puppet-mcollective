@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2018/04/20|     |Release 0.5.0                                                                                            |
+|2018/04/18|168  |Avoid refreshed of the facts exec when the cron is disabled                                              |
+|2018/04/17|166  |Create JSON versions of Agent DDLs                                                                       |
 |2018/03/26|     |Release 0.4.1                                                                                            |
 |2018/03/25|163  |Work around for Puppet 5.5.0 breaking changes in facts loading                                           |
 |2018/02/25|     |Release 0.4.0                                                                                            |
