@@ -63,11 +63,4 @@ class mcollective::config {
     content => $policy_content,
     notify  => Class["mcollective::service"]
   }
-
-  file{"${mcollective::configdir}/federation":
-    owner  => $mcollective::plugin_owner,
-    group  => $mcollective::plugin_group,
-    mode   => $mcollective::plugin_mode,
-    ensure => "directory"
-  }
 }
