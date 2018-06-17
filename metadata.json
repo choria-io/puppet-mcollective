@@ -107,6 +107,9 @@
         "10.11",
         "10.12"
       ]
+    },
+    {
+      "operatingsystem": "Archlinux"
     }
   ],
   "requirements": [
