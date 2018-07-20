@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2018/07/20|     |Release 0.7.0                                                                                            |
+|2018/07/11|185  |Support Ubuntu 18.04                                                                                     |
+|2018/06/17|183  |Improve Archlinux support                                                                                |
 |2018/05/21|     |Release 0.6.0                                                                                            |
 |2018/05/04|178  |Update location of JSON schema for agent DDLs                                                            |
 |2018/04/26|176  |Create a `choria-shim.cfg` for the Choria Server Ruby compatability                                      |
