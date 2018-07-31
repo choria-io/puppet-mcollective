@@ -61,6 +61,7 @@ mcollective::plugin_mode: "0644"
 mcollective::libdir: "/opt/puppetlabs/mcollective/plugins"
 mcollective::configdir: "/etc/puppetlabs/mcollective"
 mcollective::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
+mcollective::gem_provider: "puppet_gem"
 mcollective::plugintypes:
   - "agent"
   - "aggregate"

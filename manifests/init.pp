@@ -62,7 +62,8 @@ class mcollective (
   Boolean $client,
   Boolean $server,
   Boolean $purge,
-  Optional[String] $gem_source = undef
+  Optional[String] $gem_source = undef,
+  String $gem_provider
 ) {
   $factspath = "${configdir}/generated-facts.yaml"
 
