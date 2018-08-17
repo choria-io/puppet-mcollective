@@ -5,7 +5,7 @@
 |2018/06/17|183  |Improve Archlinux support                                                                                |
 |2018/05/21|     |Release 0.6.0                                                                                            |
 |2018/05/04|178  |Update location of JSON schema for agent DDLs                                                            |
-|2018/04/26|176  |Create a `choria-shim.cfg` for the Choria Server Ruby compatability                                      |
+|2018/04/26|176  |Create a `choria-shim.cfg` for the Choria Server Ruby compatibility                                      |
 |2018/04/25|174  |Unmanage the Ruby federation broker configuration directory                                              |
 |2018/04/20|     |Release 0.5.0                                                                                            |
 |2018/04/18|168  |Avoid refreshed of the facts exec when the cron is disabled                                              |
