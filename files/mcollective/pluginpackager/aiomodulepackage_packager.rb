@@ -10,6 +10,17 @@ module MCollective
         @module_template = module_template || File.join(File.dirname(__FILE__), 'templates', 'aiomodule')
       end
 
+      def which(cmd)
+        exts = ENV["PATHEXT"] ? ENV["PATHEXT"].split(";") : [""]
+        ENV["PATH"].split(File::PATH_SEPARATOR).each do |path|
+          exts.each do |ext|
+            exe = File.join(path, "#{cmd}#{ext}")
+            return exe if File.executable?(exe) && !File.directory?(exe)
+          end
+        end
+        return nil
+      end
+
       def create_packages
         assert_new_enough_puppet
         validate_environment
@@ -17,7 +28,7 @@ module MCollective
         begin
           puts("Building Choria module %s" % module_name)
 
-          @tmpdir = Dir.mktmpdir('mcollective_packager')
+          @tmpdir = Dir.mktmpdir("mcollective_packager")
 
           make_module_dirs
           copy_module_files
@@ -167,8 +178,8 @@ module MCollective
 
       def render_template(infile, outfile)
         begin
-          erb = ERB.new(File.read(infile), nil, '-')
-          File.open(outfile, 'w') do |f|
+          erb = ERB.new(File.read(infile), nil, "-")
+          File.open(outfile, "w") do |f|
             f.puts erb.result(binding)
           end
         rescue
@@ -183,11 +194,13 @@ module MCollective
       end
 
       def assert_new_enough_puppet
-        unless File.executable?("/opt/puppetlabs/bin/puppet")
-          raise("Cannot build package. '/opt/puppetlabs/bin/puppet' is not present on the system.")
+        puppet_bin = which("puppet")
+        puppet_bin = "/opt/puppetlabs/bin/puppet" if !puppet_bin
+        if !puppet_bin
+          raise("Cannot build package. 'puppet' not found on path, and '/opt/puppetlabs/bin/puppet' is not present on the system.")
         end
 
-        s = Shell.new("/opt/puppetlabs/bin/puppet --version")
+        s = Shell.new("#{puppet_bin} --version")
         s.runcommand
         actual_version = s.stdout.chomp
         required_version = '4.5.1'
