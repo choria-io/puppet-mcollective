@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2018/09/20|     |Release 0.8.1                                                                                            |
+|2018/10/03|197  |Support latest puppetlabs/stdlib                                                                         |
 |2018/09/20|     |Release 0.8.0                                                                                            |
 |2018/08/30|193  |Support packaging modules with Puppet installed via gem                                                  |
 |2018/08/17|191  |Improve FreeBSD support                                                                                  |
