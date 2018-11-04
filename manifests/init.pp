@@ -6,6 +6,7 @@
 # @param server_config A hash of config items to set in the server.cfg
 # @param client_config A hash of config items to set in the client.cfg
 # @param common_config A hash of config items to set in both client.cfg and server.cfg
+# @param bindir Where to create symlinks for our commands
 # @param libdir The directory where plugins will go in
 # @param configdir Root directory to config files
 # @param facts_refresh_interval Minutes between fact refreshes, set to 0 to disable cron based refreshes
@@ -38,6 +39,7 @@ class mcollective (
   Hash $server_config = {},
   Hash $client_config = {},
   Hash $common_config = {},
+  String $bindir,
   String $libdir,
   String $configdir,
   String $rubypath,
