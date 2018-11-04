@@ -2,6 +2,7 @@
 mcollective::plugin_group: wheel
 mcollective::service_name: mcollectived
 mcollective::configdir: "/usr/local/etc/mcollective"
+mcollective::bindir: "/usr/local/bin"
 mcollective::libdir: "/usr/local/share"
 mcollective::rubypath: "/usr/local/bin/ruby"
 mcollective::gem_provider: "gem"
