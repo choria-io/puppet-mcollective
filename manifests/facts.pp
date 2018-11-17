@@ -55,7 +55,7 @@ class mcollective::facts (
   } else {
     cron{"mcollective_facts_yaml_refresh":
       ensure  => $cron_ensure,
-      command => "'${rubypath}' '${scriptpath}' -o '${factspath}' ${factspid} 2>&1 > /dev/null",
+      command => "'${rubypath}' '${scriptpath}' -o '${factspath}' ${factspid} &> /dev/null",
       minute  => $cron_minutes
     }
   }
