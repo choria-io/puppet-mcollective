@@ -1,13 +1,20 @@
 Facter.add(:mcollective) do
+  pver = Facter.value(:puppetversion)
+  aiover = Facter.value(:aio_agent_version)
+
   setcode do
+    result = {
+      "client" => {},
+      "server" => {},
+      "puppet_major_version" => 0,
+      "aio_major_version" => 0
+    }
+
+    result["puppet_major_version"] = pver.split(".").first.to_i if pver
+    result["aio_major_version"] = aiover.split(".").first.to_i if aiover
+
     begin
       require "mcollective"
-
-      result = {
-        "version" => MCollective::VERSION,
-        "client" => {},
-        "server" => {}
-      }
 
       ["client", "server"].each do |config|
         if MCollective::Util.windows?
@@ -40,7 +47,9 @@ Facter.add(:mcollective) do
 
       result
     rescue StandardError, LoadError
-      {"error" => "%s: %s" % [$!.class, $!.to_s]}
+      result["error"] = "%s: %s" % [$!.class, $!.to_s]
     end
+
+    result
   end
 end

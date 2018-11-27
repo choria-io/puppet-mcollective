@@ -63,6 +63,7 @@ mcollective::libdir: "/opt/puppetlabs/mcollective/plugins"
 mcollective::configdir: "/etc/puppetlabs/mcollective"
 mcollective::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
 mcollective::gem_provider: "puppet_gem"
+mcollective::manage_bin_symlinks: false
 mcollective::plugintypes:
   - "agent"
   - "aggregate"
@@ -76,6 +77,11 @@ mcollective::plugintypes:
   - "util"
   - "validator"
   - "pluginpackager"
+
+mcollective::required_directories:
+  - /etc/puppetlabs/mcollective
+  - /opt/puppetlabs/mcollective
+  - /opt/puppetlabs/mcollective/mcollective
 
 lookup_options:
   mcollective::collectives:

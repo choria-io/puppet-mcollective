@@ -7,6 +7,8 @@ mcollective::libdir: "/usr/local/share"
 mcollective::rubypath: "/usr/local/bin/ruby"
 mcollective::gem_provider: "gem"
 mcollective::manage_package: true
+mcollective::required_directories: []
+mcollective::manage_bin_symlinks: false
 
 mcollective::server_config:
   classesfile: "/var/puppet/state/classes.txt"
