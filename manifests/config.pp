@@ -57,6 +57,16 @@ class mcollective::config {
   $server_config = $mcollective::common_config + $server_collectives + $mcollective::server_config + $global_config
   $client_config = $mcollective::common_config + $client_collectives + $mcollective::client_config + $global_config
 
+
+  $mcollective::required_directories.each |$dir| {
+    file{$dir:
+      ensure => "directory",
+      owner  => $mcollective::plugin_owner,
+      group  => $mcollective::plugin_group,
+      mode   => "0755"
+    }
+  }
+
   mcollective::config_file{"${mcollective::configdir}/server.cfg":
     settings => $server_config,
     notify   => Class["mcollective::service"]
