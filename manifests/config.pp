@@ -1,13 +1,8 @@
 class mcollective::config {
-  if "aio_agent_version" in $facts and $facts["aio_agent_version"] =~ /^6/ {
-    # on windows we will need a bat file wrapper or something, anyway these
-    # hard coded paths would be different for now I'll just skip this till
-    # later
-    if $facts["os"]["family"] != "windows" {
-      file{"${mcollective::bindir}/mco":
-        ensure => link,
-        target => "/opt/puppetlabs/puppet/bin/mco",
-      }
+  if $mcollective::manage_bin_symlinks {
+    file{"${mcollective::bindir}/mco":
+      ensure => link,
+      target => "/opt/puppetlabs/puppet/bin/mco",
     }
   }
 

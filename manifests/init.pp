@@ -19,6 +19,7 @@
 # @param plugin_owner The default user who will own plugin files
 # @param plugin_group The default group who will own plugin files
 # @param plugin_mode The default mode plugin files will have
+# @param required_directories Any extra directories that should be created before copying plugins and configuration
 # @param policy_default When managing plugin policies this will be the default allow/deny
 # @param site_policies Policies to apply to all agents after any module specific policies
 # @param rpcutil_policies Policies to apply to the special rpcutil agent
@@ -32,6 +33,7 @@
 # @param server Install server files on this node
 # @param purge When true will remove unmanaged files from the $configdir/plugin.d, $configdir/policies and $libdir
 # @param gem_source where to find gems, useful for local gem mirrors
+# @param manage_bin_symlinks Enables creating symlinks in the bin dir for the mco command
 class mcollective (
   Array[String] $plugintypes,
   Array[String] $plugin_classes,
@@ -43,6 +45,7 @@ class mcollective (
   String $libdir,
   String $configdir,
   String $rubypath,
+  Boolean $manage_bin_symlinks = false,
   Integer $facts_refresh_interval,
   Array[Mcollective::Collective] $collectives,
   Array[Mcollective::Collective] $client_collectives = $collectives,
@@ -52,6 +55,7 @@ class mcollective (
   Optional[String] $plugin_owner,
   Optional[String] $plugin_group,
   Optional[String] $plugin_mode,
+  Array[String] $required_directories = [],
   Mcollective::Policy_action $policy_default,
   Array[Mcollective::Policy] $site_policies = [],
   Array[Mcollective::Policy] $rpcutil_policies = [],

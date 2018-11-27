@@ -1,1 +1,2 @@
 mcollective::plugin_group: wheel
+mcollective::required_directories: []
