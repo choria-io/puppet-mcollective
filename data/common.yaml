@@ -81,7 +81,6 @@ mcollective::plugintypes:
 mcollective::required_directories:
   - /etc/puppetlabs/mcollective
   - /opt/puppetlabs/mcollective
-  - /opt/puppetlabs/mcollective/mcollective
 
 lookup_options:
   mcollective::collectives:
