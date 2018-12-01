@@ -1,5 +1,12 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2018/12/01|     |Release 0.9.0                                                                                            |
+|2018/11/30|212  |On AIO Puppet 6 include the choria class ensuring they use Choria Server by default                      |
+|2018/11/27|206  |Disable `mcollectived` on AIO Puppet 6                                                                   |
+|2018/11/16|208  |Redirect cron output to /dev/null                                                                        |
+|2018/11/04|203  |Create `mco` symlinks on AIO Puppet 6                                                                    |
+|2018/11/04|202  |On AIO Puppet 6 skip managing the service even when requested                                            |
+|2018/11/03|200  |On AIO Puppet 6 create the standard mcollective directories that exist in 5                              |
 |2018/09/20|     |Release 0.8.1                                                                                            |
 |2018/10/03|197  |Support latest puppetlabs/stdlib                                                                         |
 |2018/09/20|     |Release 0.8.0                                                                                            |
