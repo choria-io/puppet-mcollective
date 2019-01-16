@@ -63,7 +63,7 @@ class mcollective::config {
       ensure => "directory",
       owner  => $mcollective::plugin_owner,
       group  => $mcollective::plugin_group,
-      mode   => "0755"
+      mode   => "0775"
     }
   }
 
