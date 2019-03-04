@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2019/03/04|     |Release 0.9.1                                                                                            |
+|2019/01/16|216  |Correctly set permissions for folders on Windows systems                                                 |
 |2018/12/01|     |Release 0.9.0                                                                                            |
 |2018/11/30|212  |On AIO Puppet 6 include the choria class ensuring they use Choria Server by default                      |
 |2018/11/27|206  |Disable `mcollectived` on AIO Puppet 6                                                                   |
