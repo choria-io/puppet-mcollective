@@ -14,7 +14,7 @@ class mcollective::facts (
   file{$scriptpath:
     owner   => $owner,
     group   => $group,
-    mode    => "0755",
+    mode    => "0775",
     content => template("mcollective/refresh_facts.erb"),
   }
 
