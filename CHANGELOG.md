@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2019/05/27|     |Release 0.9.2                                                                                            |
+|2019/03/13|223  |Avoid repeated mode changes of the fact gatherer script on windows                                       |
 |2019/03/04|     |Release 0.9.1                                                                                            |
 |2019/01/16|216  |Correctly set permissions for folders on Windows systems                                                 |
 |2018/12/01|     |Release 0.9.0                                                                                            |
