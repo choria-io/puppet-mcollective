@@ -26,20 +26,25 @@ define mcollective::module_plugin (
   Optional[String] $group = $mcollective::plugin_group,
   Optional[String] $mode = $mcollective::plugin_mode,
   Enum["present", "absent"] $ensure = "present"
+  Boolean $activate_agent = true
+  Boolean $activate_client = true
 ) {
   if $client or $server {
     if ($server and $client) {
-      $merged_conf = $config.deep_merge($client_config).deep_merge($server_config)
+      $activate_config = {"activate_agent" => $activate_agent, "activate_client" => $activate_client}
+      $merged_conf = $config.deep_merge($client_config).deep_merge($server_config) + $activate_config
       $merged_files = $common_files + $server_files + $client_files
       $merged_directories = $common_directories + $server_directories + $client_directories
 
     } elsif ($server) {
-      $merged_conf = $config.deep_merge($server_config)
+      $activate_config = {"activate_agent" => $activate_agent, "activate_client" => false}
+      $merged_conf = $config.deep_merge($server_config) + $activate_config
       $merged_files = $common_files + $server_files
       $merged_directories = $common_directories + $server_directories
 
     } elsif ($client) {
-      $merged_conf = $config.deep_merge($client_config)
+      $activate_config = {"activate_agent" => false, "activate_client" => $activate_client}
+      $merged_conf = $config.deep_merge($client_config) + $activate_config
       $merged_files = $common_files + $client_files
       $merged_directories = $common_directories + $client_directories
     }
