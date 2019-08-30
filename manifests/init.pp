@@ -33,6 +33,7 @@
 # @param server Install server files on this node
 # @param purge When true will remove unmanaged files from the $configdir/plugin.d, $configdir/policies and $libdir
 # @param gem_source where to find gems, useful for local gem mirrors
+# @param gem_install_options Options to customise gem installation
 # @param manage_bin_symlinks Enables creating symlinks in the bin dir for the mco command
 class mcollective (
   Array[String] $plugintypes,
@@ -69,6 +70,7 @@ class mcollective (
   Boolean $server,
   Boolean $purge,
   Optional[String] $gem_source = undef,
+  Optional[Array[Variant[String,Hash[String,String]]]] $gem_install_options = undef,
   String $gem_provider
 ) {
   $factspath = "${configdir}/generated-facts.yaml"

@@ -67,10 +67,11 @@ define mcollective::module_plugin (
     if $manage_gem_dependencies {
       $gem_dependencies.each |$gem, $version| {
         package{$gem:
-          ensure   => $version,
-          provider => $mcollective::gem_provider,
-          source   => $mcollective::gem_source,
-          tag      => "mcollective_plugin_${name}_packages"
+          ensure          => $version,
+          provider        => $mcollective::gem_provider,
+          source          => $mcollective::gem_source,
+          install_options => $mcollective::gem_install_options,
+          tag             => "mcollective_plugin_${name}_packages"
         }
       }
     }
