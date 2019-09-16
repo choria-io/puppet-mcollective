@@ -214,7 +214,7 @@ module MCollective
         begin
           PluginPackager.execute_verbosely(@verbose) do
             Dir.chdir(@tmpdir) do
-              PluginPackager.safe_system('puppet module build')
+              PluginPackager.safe_system('pdk build --force')
             end
           end
         rescue
