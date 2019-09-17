@@ -23,6 +23,7 @@
 # @param policy_default When managing plugin policies this will be the default allow/deny
 # @param site_policies Policies to apply to all agents after any module specific policies
 # @param rpcutil_policies Policies to apply to the special rpcutil agent
+# @param choria_util_policies Policies to apply to the special choria_util agent
 # @param manage_package Install mcollective package on this node
 # @param package_name The name of the package to install if manage_package is enabled
 # @param package_ensure Ensure value for the package
@@ -59,6 +60,7 @@ class mcollective (
   Mcollective::Policy_action $policy_default,
   Array[Mcollective::Policy] $site_policies = [],
   Array[Mcollective::Policy] $rpcutil_policies = [],
+  Array[Mcollective::Policy] $choria_util_policies = [],
   Boolean $manage_package,
   Enum["present", "latest"] $package_ensure,
   String $package_name,
