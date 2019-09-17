@@ -85,7 +85,22 @@ class mcollective::config {
     settings => $shim_config,
   }
 
-  $policy_content = epp("mcollective/policy_file.epp", {
+  $cu_policy_content = epp("mcollective/policy_file.epp", {
+    "module"         => "choria_util",
+    "policy_default" => $mcollective::policy_default,
+    "policies"       => $mcollective::choria_util_policies,
+    "site_policies"  => $mcollective::site_policies
+  })
+
+  file{"${mcollective::configdir}/policies/choria_util.policy":
+    owner   => $mcollective::plugin_owner,
+    group   => $mcollective::plugin_group,
+    mode    => $mcollective::plugin_mode,
+    content => $cu_policy_content,
+    notify  => Class["mcollective::service"]
+  }
+
+  $ru_policy_content = epp("mcollective/policy_file.epp", {
     "module"         => "rpcutil",
     "policy_default" => $mcollective::policy_default,
     "policies"       => $mcollective::rpcutil_policies,
@@ -96,7 +111,7 @@ class mcollective::config {
     owner   => $mcollective::plugin_owner,
     group   => $mcollective::plugin_group,
     mode    => $mcollective::plugin_mode,
-    content => $policy_content,
+    content => $ru_policy_content,
     notify  => Class["mcollective::service"]
   }
 }
