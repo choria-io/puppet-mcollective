@@ -43,7 +43,6 @@ mcollective::rpcutil_policies:
     classes: "*"
 
 mcollective::plugin_classes:
-  - "mcollective::packager"
   - "mcollective_choria"
   - "mcollective_agent_puppet"
   - "mcollective_agent_service"
