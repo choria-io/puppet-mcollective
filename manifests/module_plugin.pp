@@ -25,28 +25,21 @@ define mcollective::module_plugin (
   Optional[String] $owner = $mcollective::plugin_owner,
   Optional[String] $group = $mcollective::plugin_group,
   Optional[String] $mode = $mcollective::plugin_mode,
-  Enum["present", "absent"] $ensure = "present",
-  Boolean $activate_agent = true,
-  Boolean $activate_client = true
+  Enum["present", "absent"] $ensure = "present"
 ) {
-  $_agent = $name =~ /^mcollective_agent_/
-
   if $client or $server {
     if ($server and $client) {
-      $activate_config = $_agent ? {true => {"activate_agent" => $activate_agent, "activate_client" => $activate_client}, false => {}}
-      $merged_conf = $config.deep_merge($client_config).deep_merge($server_config) + $activate_config
+      $merged_conf = $config.deep_merge($client_config).deep_merge($server_config)
       $merged_files = $common_files + $server_files + $client_files
       $merged_directories = $common_directories + $server_directories + $client_directories
 
     } elsif ($server) {
-      $activate_config = $_agent ? {true => {"activate_agent" => $activate_agent, "activate_client" => false}, false => {}}
-      $merged_conf = $config.deep_merge($server_config) + $activate_config
+      $merged_conf = $config.deep_merge($server_config)
       $merged_files = $common_files + $server_files
       $merged_directories = $common_directories + $server_directories
 
     } elsif ($client) {
-      $activate_config = $_agent ? {true => {"activate_agent" => false, "activate_client" => $activate_client}, false => {}}
-      $merged_conf = $config.deep_merge($client_config) + $activate_config
+      $merged_conf = $config.deep_merge($client_config)
       $merged_files = $common_files + $client_files
       $merged_directories = $common_directories + $client_directories
     }
@@ -96,17 +89,12 @@ define mcollective::module_plugin (
     }
 
     unless $merged_conf.empty {
-      # the bolt agent and main choria coded both use choria as plugin name which breaks this
-      # we have to fix that when moving to the new model for distributing plugins for now
-      # this is the only way
-      unless defined(Mcollective::Config_file["${configdir}/plugin.d/${config_name}.cfg"]) {
-        mcollective::config_file{"${configdir}/plugin.d/${config_name}.cfg":
-          ensure   => $ensure,
-          settings => $merged_conf,
-          owner    => $owner,
-          group    => $group,
-          mode     => $mode
-        }
+      mcollective::config_file { "${configdir}/plugin.d/${config_name}.cfg":
+        ensure   => $ensure,
+        settings => $merged_conf,
+        owner    => $owner,
+        group    => $group,
+        mode     => $mode
       }
     }
 
