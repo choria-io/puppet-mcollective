@@ -1,5 +1,10 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2019/09/20|     |Release 0.10.0                                                                                           |
+|2019/09/18|237  |Retire the AIO Module packager - merged into the choria-mcorpc-support gem                               |
+|2019/09/17|235  |Write `choria_util` policies by default                                                                  |
+|2019/09/16|221  |Use PDK to build modules                                                                                 |
+|2019/06/18|     |Requires Puppet 6                                                                                        |
 |2019/05/27|     |Release 0.9.2                                                                                            |
 |2019/03/13|223  |Avoid repeated mode changes of the fact gatherer script on windows                                       |
 |2019/03/04|     |Release 0.9.1                                                                                            |
