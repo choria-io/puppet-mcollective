@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2019/09/26|     |Release 0.10.1                                                                                           |
+|2019/09/26|241  |Support setting some plugin files as executable                                                          |
 |2019/09/20|     |Release 0.10.0                                                                                           |
 |2019/09/18|237  |Retire the AIO Module packager - merged into the choria-mcorpc-support gem                               |
 |2019/09/17|235  |Write `choria_util` policies by default                                                                  |
