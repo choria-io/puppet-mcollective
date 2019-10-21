@@ -8,7 +8,7 @@
   "project_page": "https://github.com/choria-io/puppet-mcollective",
   "issues_url": "https://github.com/choria-io/puppet-mcollective/issues",
   "dependencies": [
-    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 6.0.0" }
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 7.0.0" }
   ],
   "operatingsystem_support": [
     {
