@@ -6,7 +6,7 @@ mcollective::plugin_executable_mode: ~
 mcollective::bindir: "C:/Program Files/Puppet Labs/Puppet/bin"
 mcollective::libdir: "C:/ProgramData/PuppetLabs/mcollective/plugins"
 mcollective::configdir: "C:/ProgramData/PuppetLabs/mcollective/etc"
-mcollective::rubypath: 'C:\Program Files\Puppet Labs\Puppet\sys\ruby\bin\ruby.exe'
+mcollective::rubypath: "C:/Program Files/Puppet Labs/Puppet/puppet/bin/ruby.exe"
 mcollective::facts_pidfile: ~
 mcollective::manage_bin_symlinks: false
 
