@@ -27,7 +27,8 @@ define mcollective::module_plugin (
   Optional[String] $group = $mcollective::plugin_group,
   Optional[String] $mode = $mcollective::plugin_mode,
   Optional[String] $executable_mode = $mcollective::plugin_executable_mode,
-  Enum["present", "absent"] $ensure = "present"
+  Enum["present", "absent"] $ensure = "present",
+  String $rego_policy_source = ""
 ) {
   if $client or $server {
     if ($server and $client) {
@@ -88,6 +89,16 @@ define mcollective::module_plugin (
       }
 
       Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${configdir}/policies/${agent_name}.policy"]
+    }
+
+
+    if $rego_policy_source != "" {
+      file{"${configdir}/policies/rego/${agent_name}.rego":
+        owner   => $owner,
+        group   => $group,
+        mode    => $mode,
+        source  => $rego_policy_source
+      }
     }
 
     unless $merged_conf.empty {

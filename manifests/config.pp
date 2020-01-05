@@ -114,4 +114,13 @@ class mcollective::config {
     content => $ru_policy_content,
     notify  => Class["mcollective::service"]
   }
+
+  if $mcollective::default_rego_policy_source != "" {
+    file{"${mcollective::configdir}/policies/rego/default.rego":
+      owner   => $mcollective::plugin_owner,
+      group   => $mcollective::plugin_group,
+      mode    => $mcollective::plugin_mode,
+      source  => $mcollective::default_rego_policy_source,
+    }
+  }
 }

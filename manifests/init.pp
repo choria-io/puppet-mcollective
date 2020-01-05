@@ -63,6 +63,7 @@ class mcollective (
   Array[Mcollective::Policy] $site_policies = [],
   Array[Mcollective::Policy] $rpcutil_policies = [],
   Array[Mcollective::Policy] $choria_util_policies = [],
+  String $default_rego_policy_source,
   Boolean $manage_package,
   Enum["present", "latest"] $package_ensure,
   String $package_name,

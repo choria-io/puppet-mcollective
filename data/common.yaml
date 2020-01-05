@@ -71,6 +71,7 @@ mcollective::configdir: "/etc/puppetlabs/mcollective"
 mcollective::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
 mcollective::gem_provider: "puppet_gem"
 mcollective::manage_bin_symlinks: false
+mcollective::default_rego_policy_source: "puppet:///modules/mcollective/default.rego"
 mcollective::plugintypes:
   - "agent"
   - "aggregate"
