@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2020/02/11|     |Release 0.10.3                                                                                           |
+|2020/01/05|247  |Support copying rego policy files                                                                        |
+|2019/12/02|     |Fix ruby path on Windows with Puppet 6                                                                   |
 |2019/11/26|     |Release 0.10.2                                                                                           |
 |2019/10/21|     |Update stdlib dependency                                                                                 |
 |2019/09/26|     |Release 0.10.1                                                                                           |
