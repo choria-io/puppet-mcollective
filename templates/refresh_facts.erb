@@ -61,7 +61,11 @@ Facter.search_external([Puppet[:pluginfactdest]])
 Puppet.initialize_facts
 
 file = Tempfile.new("facter_yaml_writer")
-file.write(Facter.to_hash.to_yaml)
+# The following conversion back-and-forth to JSON is intended to avoid multiple
+# occurence of the same object being output as aliases in the YAML file:
+# aliases are not enabled by default by YAML.safe_load because it can be abused
+# and have security implications.
+file.write(YAML.dump(JSON.load(Facter.to_hash.to_json)))
 file.close
 
 FileUtils.mv(file.path, @outfile)
