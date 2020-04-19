@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2020/04/19|     |Release 0.10.4                                                                                           |
+|2020/04/09|250  |Avoid producing YAML aliases                                                                             |
 |2020/02/11|     |Release 0.10.3                                                                                           |
 |2020/01/05|247  |Support copying rego policy files                                                                        |
 |2019/12/02|     |Fix ruby path on Windows with Puppet 6                                                                   |
