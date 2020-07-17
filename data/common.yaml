@@ -42,6 +42,13 @@ mcollective::rpcutil_policies:
     facts: "*"
     classes: "*"
 
+mcollective::scout_policies:
+  - action: "allow"
+    actions: "checks"
+    callers: "*"
+    facts: "*"
+    classes: "*"
+
 mcollective::plugin_classes:
   - "mcollective_choria"
   - "mcollective_agent_puppet"

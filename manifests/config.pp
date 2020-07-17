@@ -115,6 +115,21 @@ class mcollective::config {
     notify  => Class["mcollective::service"]
   }
 
+  $scout_policy_content = epp("mcollective/policy_file.epp", {
+    "module"         => "scout",
+    "policy_default" => $mcollective::policy_default,
+    "policies"       => $mcollective::scout_policies,
+    "site_policies"  => $mcollective::site_policies
+  })
+
+  file{"${mcollective::configdir}/policies/scout.policy":
+    owner   => $mcollective::plugin_owner,
+    group   => $mcollective::plugin_group,
+    mode    => $mcollective::plugin_mode,
+    content => $scout_policy_content,
+    notify  => Class["mcollective::service"]
+  }
+
   if $mcollective::default_rego_policy_source != "" {
     file{"${mcollective::configdir}/policies/rego/default.rego":
       owner   => $mcollective::plugin_owner,
