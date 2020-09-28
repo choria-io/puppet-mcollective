@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2020/09/28|     |Release 0.11.0                                                                                           |
+|2020/08/24|259  |Add dash to the Mcollective::Collectives pattern                                                         |
 |2020/07/18|     |Release 0.10.5                                                                                           |
 |2020/07/17|254  |Support managing the `scout` agent policies                                                              |
 |2020/04/19|     |Release 0.10.4                                                                                           |
