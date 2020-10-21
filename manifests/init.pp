@@ -81,12 +81,12 @@ class mcollective (
   $factspath = "${configdir}/generated-facts.yaml"
 
   if $mcollective::manage_package {
-    include mcollective::package
+    contain mcollective::package
   }
-  include mcollective::plugin_dirs
-  include mcollective::config
-  include mcollective::facts
-  include mcollective::service
+  contain mcollective::plugin_dirs
+  contain mcollective::config
+  contain mcollective::facts
+  contain mcollective::service
 
-  include $plugin_classes - $plugin_classes_exclude
+  contain $plugin_classes - $plugin_classes_exclude
 }
