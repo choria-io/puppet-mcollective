@@ -18,8 +18,6 @@ mcollective::server_config:
   plugin.rpcaudit.logfile: "/var/log/puppetlabs/mcollective-audit.log"
   factsource: "yaml"
   plugin.yaml: "/etc/puppetlabs/mcollective/generated-facts.yaml"
-  registerinterval: 10
-  registration: "Choria"
   logfile: "/var/log/puppetlabs/mcollective.log"
   daemonize: 1
 
