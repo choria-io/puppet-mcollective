@@ -28,7 +28,8 @@ define mcollective::module_plugin (
   Optional[String] $mode = $mcollective::plugin_mode,
   Optional[String] $executable_mode = $mcollective::plugin_executable_mode,
   Enum["present", "absent"] $ensure = "present",
-  String $rego_policy_source = ""
+  String $rego_policy_source = "",
+  Enum['content', 'source'] $file_transfer_type = $mcollective::file_transfer_type,
 ) {
   if $client or $server {
     if ($server and $client) {
@@ -137,13 +138,24 @@ define mcollective::module_plugin (
         $_mode = $mode
       }
 
+      case $file_transfer_type {
+        'content': {
+          $content = undef,
+          $source = "puppet:///modules/${caller_module_name}/mcollective/${file}"
+        },
+        'source': {
+          $content = file("${caller_module_name}/mcollective/${file}")
+          $source = undef
+        }
+      }
       file{"${libdir}/mcollective/${file}":
-        ensure => $ensure,
-        source => "puppet:///modules/${caller_module_name}/mcollective/${file}",
-        owner  => $owner,
-        group  => $group,
-        mode   => $_mode,
-        tag    => $f_tag
+        ensure  => $ensure,
+        source  => $source,
+        content => $content,
+        owner   => $owner,
+        group   => $group,
+        mode    => $_mode,
+        tag     => $f_tag
       }
 
       Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/mcollective/${file}"]
