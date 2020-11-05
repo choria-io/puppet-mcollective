@@ -37,7 +37,7 @@
 # @param purge When true will remove unmanaged files from the $configdir/plugin.d, $configdir/policies and $libdir
 # @param gem_source where to find gems, useful for local gem mirrors
 # @param manage_bin_symlinks Enables creating symlinks in the bin dir for the mco command
-# @param file_transfer_type enum to configure global type for file resources in plugins. could be overwritten for every plugin in their defined resource
+# @param plugin_file_transfer_type enum to configure global type for file resources in plugins. could be overwritten for every plugin in their defined resource
 class mcollective (
   Array[String[1]] $plugintypes,
   Array[String[1]] $plugin_classes,
@@ -77,8 +77,8 @@ class mcollective (
   Boolean $server,
   Boolean $purge,
   Optional[String[1]] $gem_source = undef,
-  String[1] $gem_provider
-  Enum['content', 'source'] $file_transfer_type = 'source',
+  String[1] $gem_provider,
+  Enum['content', 'source'] $plugin_file_transfer_type = 'source',
 ) {
   $factspath = "${configdir}/generated-facts.yaml"
 
