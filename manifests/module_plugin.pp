@@ -29,7 +29,7 @@ define mcollective::module_plugin (
   Optional[String] $executable_mode = $mcollective::plugin_executable_mode,
   Enum["present", "absent"] $ensure = "present",
   String $rego_policy_source = "",
-  Enum['content', 'source'] $file_transfer_type = $mcollective::file_transfer_type,
+  Enum['content', 'source'] $file_transfer_type = $mcollective::plugin_file_transfer_type,
 ) {
   if $client or $server {
     if ($server and $client) {
@@ -140,9 +140,9 @@ define mcollective::module_plugin (
 
       case $file_transfer_type {
         'content': {
-          $content = undef,
+          $content = undef
           $source = "puppet:///modules/${caller_module_name}/mcollective/${file}"
-        },
+        }
         'source': {
           $content = file("${caller_module_name}/mcollective/${file}")
           $source = undef
