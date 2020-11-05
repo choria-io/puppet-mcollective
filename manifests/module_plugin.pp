@@ -139,11 +139,11 @@ define mcollective::module_plugin (
       }
 
       case $file_transfer_type {
-        'content': {
+        'source': {
           $content = undef
           $source = "puppet:///modules/${caller_module_name}/mcollective/${file}"
         }
-        'source': {
+        'content': {
           $content = file("${caller_module_name}/mcollective/${file}")
           $source = undef
         }
