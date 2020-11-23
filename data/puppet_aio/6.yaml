@@ -1,5 +1,0 @@
-mcollective::service_ensure: stopped
-mcollective::service_enable: false
-mcollective::manage_bin_symlinks: true
-mcollective::plugin_classes:
-  - choria
