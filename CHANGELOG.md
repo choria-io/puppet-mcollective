@@ -1,5 +1,12 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2020/11/25|     |Release 0.12.0                                                                                           |
+|2020/11/23|273  |Initial Puppet 7 support                                                                                 |
+|2020/11/05|269  |Improve network utilization by using file() and not source                                               |
+|2020/10/22|267  |Remove mcollective server facts                                                                          |
+|2020/10/21|266  |Support FreeBSD                                                                                          |
+|2020/10/21|263  |Improve the Puppet datatypes                                                                             |
+|2020/10/21|261  |Improve module containment                                                                               |
 |2020/09/28|     |Release 0.11.0                                                                                           |
 |2020/08/24|259  |Add dash to the Mcollective::Collectives pattern                                                         |
 |2020/07/18|     |Release 0.10.5                                                                                           |
