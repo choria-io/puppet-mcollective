@@ -29,6 +29,7 @@
 # @param manage_package Install mcollective package on this node
 # @param package_name The name of the package to install if manage_package is enabled
 # @param package_ensure Ensure value for the package
+# @param manage_service Manage mcollectived service on this node
 # @param service_ensure Ensure value for the service
 # @param service_name The mcollective service name to notify and manage
 # @param service_enable The enable value for the service
@@ -70,6 +71,7 @@ class mcollective (
   Boolean $manage_package,
   Enum["present", "latest"] $package_ensure,
   String[1] $package_name,
+  Boolean $manage_service = true,
   Enum["stopped", "running"] $service_ensure,
   String[1] $service_name,
   Boolean $service_enable,
@@ -88,7 +90,9 @@ class mcollective (
   contain mcollective::plugin_dirs
   contain mcollective::config
   contain mcollective::facts
-  contain mcollective::service
+  if $mcollective::manage_service {
+    contain mcollective::service
+  }
 
   contain $plugin_classes - $plugin_classes_exclude
 }

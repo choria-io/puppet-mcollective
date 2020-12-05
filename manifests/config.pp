@@ -48,6 +48,12 @@ class mcollective::config {
     "daemonize"       => "0"
   }
 
+  if $mcollective::manage_service {
+    $notify_service = Class["mcollective::service"]
+  } else {
+    $notify_service = []
+  }
+
   # The order of these are important:
   #
   # - common config is effectively defaults, overridable by specific server/client settings
@@ -69,7 +75,7 @@ class mcollective::config {
 
   mcollective::config_file{"${mcollective::configdir}/server.cfg":
     settings => $server_config,
-    notify   => Class["mcollective::service"]
+    notify   => $notify_service
   }
 
   mcollective::config_file{"${mcollective::configdir}/client.cfg":
@@ -97,7 +103,7 @@ class mcollective::config {
     group   => $mcollective::plugin_group,
     mode    => $mcollective::plugin_mode,
     content => $cu_policy_content,
-    notify  => Class["mcollective::service"]
+    notify  => $notify_service
   }
 
   $ru_policy_content = epp("mcollective/policy_file.epp", {
@@ -112,7 +118,7 @@ class mcollective::config {
     group   => $mcollective::plugin_group,
     mode    => $mcollective::plugin_mode,
     content => $ru_policy_content,
-    notify  => Class["mcollective::service"]
+    notify  => $notify_service
   }
 
   $scout_policy_content = epp("mcollective/policy_file.epp", {
@@ -127,7 +133,7 @@ class mcollective::config {
     group   => $mcollective::plugin_group,
     mode    => $mcollective::plugin_mode,
     content => $scout_policy_content,
-    notify  => Class["mcollective::service"]
+    notify  => $notify_service
   }
 
   if $mcollective::default_rego_policy_source != "" {
