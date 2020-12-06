@@ -160,9 +160,5 @@ define mcollective::module_plugin (
 
       Package <| tag == "mcollective_plugin_${name}_packages" |> -> File["${libdir}/mcollective/${file}"]
     }
-
-    if $mcollective::manage_service {
-      Mcollective::Module_plugin[$name] ~> Class["mcollective::service"]
-    }
   }
 }

@@ -1,6 +1,5 @@
 ---
 mcollective::plugin_group: wheel
-mcollective::service_name: mcollectived
 mcollective::configdir: "/etc/mcollective"
 mcollective::bindir: "/usr/local/bin"
 mcollective::libdir: "/usr/local/libexec/mcollective"
