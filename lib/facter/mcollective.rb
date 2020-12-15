@@ -21,6 +21,8 @@ Facter.add(:mcollective) do
           configfile = File.join(MCollective::Util.windows_prefix, "etc", "%s.cfg" % config)
         else
           [
+            "/etc/choria/%s.conf",
+            "/usr/local/etc/choria/%s.conf",
             "/etc/puppetlabs/mcollective/%s.cfg",
             "/usr/local/etc/mcollective/%s.cfg",
             "/etc/mcollective/%s.cfg",
@@ -37,6 +39,7 @@ Facter.add(:mcollective) do
           mconfig.set_config_defaults(configfile)
           mconfig.loadconfig(configfile)
 
+          result[config]["file"] = configfile
           result[config]["libdir"] = mconfig.libdir.dup
           result[config]["connector"] = mconfig.connector.downcase
           result[config]["securityprovider"] = mconfig.securityprovider.downcase
