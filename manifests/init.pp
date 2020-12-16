@@ -29,9 +29,6 @@
 # @param manage_package Install mcollective package on this node
 # @param package_name The name of the package to install if manage_package is enabled
 # @param package_ensure Ensure value for the package
-# @param service_ensure Ensure value for the service
-# @param service_name The mcollective service name to notify and manage
-# @param service_enable The enable value for the service
 # @param client Install client files on this node
 # @param server Install server files on this node
 # @param purge When true will remove unmanaged files from the $configdir/plugin.d, $configdir/policies and $libdir
@@ -70,9 +67,6 @@ class mcollective (
   Boolean $manage_package,
   Enum["present", "latest"] $package_ensure,
   String[1] $package_name,
-  Enum["stopped", "running"] $service_ensure,
-  String[1] $service_name,
-  Boolean $service_enable,
   Boolean $client,
   Boolean $server,
   Boolean $purge,
@@ -88,7 +82,6 @@ class mcollective (
   contain mcollective::plugin_dirs
   contain mcollective::config
   contain mcollective::facts
-  contain mcollective::service
 
   contain $plugin_classes - $plugin_classes_exclude
 }
