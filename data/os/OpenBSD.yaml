@@ -1,6 +1,6 @@
 ---
 mcollective::plugin_group: wheel
-mcollective::configdir: "/etc/mcollective"
+mcollective::configdir: "/etc/choria"
 mcollective::bindir: "/usr/local/bin"
 mcollective::libdir: "/usr/local/libexec/mcollective"
 mcollective::rubypath: "/usr/local/bin/ruby24"
@@ -13,12 +13,7 @@ mcollective::server_config:
   classesfile: "/var/puppetlabs/puppet/cache/state/classes.txt"
   rpcauthorization: 1
   rpcauthprovider: "action_policy"
-  rpcaudit: 1
-  rpcauditprovider: "choria"
-  plugin.rpcaudit.logfile: "/var/log/puppetlabs/mcollective-audit.log"
   factsource: "yaml"
   plugin.yaml: "/etc/mcollective/generated-facts.yaml"
-  registerinterval: 10
-  registration: "Choria"
-  logfile: "/var/log/puppetlabs/mcollective.log"
-  daemonize: 1
+  logfile: "/var/log/puppetlabs/choria-mcorpc.log"
+  daemonize: 0

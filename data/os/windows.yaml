@@ -19,6 +19,5 @@ mcollective::required_directories:
 
 mcollective::server_config:
   classesfile: "C:/ProgramData/PuppetLabs/puppet/cache/state/classes.txt"
-  logfile: "C:/ProgramData/choria/var/log/mcollective.log"
-  plugin.rpcaudit.logfile: "C:/ProgramData/choria/var/log/mcollective-audit.log"
+  logfile: "C:/ProgramData/choria/var/log/choria-mcorpc.log"
   plugin.yaml: "C:/ProgramData/choria/etc/generated-facts.yaml"

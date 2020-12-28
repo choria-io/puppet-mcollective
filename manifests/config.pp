@@ -67,11 +67,15 @@ class mcollective::config {
     }
   }
 
-  mcollective::config_file{"${mcollective::configdir}/server.cfg":
+  file{"${mcollective::configdir}/server.cfg":
     ensure => absent,
   }
 
-  mcollective::config_file{"${mcollective::configdir}/client.cfg":
+  file{"${mcollective::configdir}/client.cfg":
+    ensure => absent
+  }
+
+  mcollective::config_file{"${mcollective::configdir}/client.conf":
     settings => $client_config,
   }
 
