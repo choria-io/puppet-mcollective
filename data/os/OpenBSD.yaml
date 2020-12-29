@@ -5,6 +5,8 @@ mcollective::bindir: "/usr/local/bin"
 mcollective::libdir: "/usr/local/libexec/mcollective"
 mcollective::rubypath: "/usr/local/bin/ruby24"
 mcollective::gem_provider: "gem"
+mcollective::package_name: "mcollective"
+mcollective::package_provider: ~
 mcollective::manage_package: true
 mcollective::required_directories: []
 mcollective::manage_bin_symlinks: false

@@ -55,11 +55,11 @@ mcollective::plugin_classes:
   - choria
 
 mcollective::manage_package: false
-mcollective::package_name: "mcollective"
-mcollective::package_ensure: "present"
+mcollective::package_name: ~
+mcollective::package_ensure: present
 mcollective::server: true
 mcollective::client: false
-mcollective::purge: false
+mcollective::purge: true
 mcollective::facts_refresh_interval: 10
 mcollective::facts_pidfile: "/var/run/puppetlabs/mcollective-facts_refresh.pid"
 mcollective::plugin_owner: "root"

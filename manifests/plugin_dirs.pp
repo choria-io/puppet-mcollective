@@ -3,13 +3,7 @@ class mcollective::plugin_dirs {
     "${mcollective::libdir}/mcollective/${type}"
   }
 
-  $needed_dirs = [
-    "${mcollective::configdir}/plugin.d",
-    "${mcollective::configdir}/policies",
-    "${mcollective::configdir}/policies/rego",
-    $mcollective::libdir,
-    "${mcollective::libdir}/mcollective",
-  ] + $libdirs
+  $needed_dirs = [$mcollective::libdir, "${mcollective::libdir}/mcollective"] + $libdirs
 
   if $mcollective::purge {
     $purge_options = {
