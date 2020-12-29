@@ -3,5 +3,6 @@ mcollective::libdir: "/etc/puppetlabs/mcollective/plugins"
 mcollective::rubypath: "/usr/bin/ruby"
 mcollective::package_name: "mcollective"
 mcollective::manage_package: true
+mcollective::package_provider: ~
 mcollective::required_directories: []
 mcollective::manage_bin_symlinks: false
