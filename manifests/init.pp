@@ -26,9 +26,6 @@
 # @param rpcutil_policies Policies to apply to the special rpcutil agent
 # @param choria_util_policies Policies to apply to the special choria_util agent
 # @param scout_policies Policies to apply to the special scout agent
-# @param manage_package Install mcollective package on this node
-# @param package_name The name of the package to install if manage_package is enabled
-# @param package_ensure Ensure value for the package
 # @param client Install client files on this node
 # @param server Install server files on this node
 # @param purge When true will remove unmanaged files from the $configdir/plugin.d, $configdir/policies and $libdir
@@ -64,10 +61,6 @@ class mcollective (
   Array[Mcollective::Policy] $choria_util_policies = [],
   Array[Mcollective::Policy] $scout_policies = [],
   Stdlib::Filesource $default_rego_policy_source,
-  Boolean $manage_package,
-  String $package_ensure,
-  Optional[String[1]] $package_name,
-  Optional[String[1]] $package_provider = undef,
   Boolean $client,
   Boolean $server,
   Boolean $purge,
@@ -77,9 +70,6 @@ class mcollective (
 ) {
   $factspath = "${configdir}/generated-facts.yaml"
 
-  if $mcollective::manage_package {
-    contain mcollective::package
-  }
   contain mcollective::plugin_dirs
   contain mcollective::config
   contain mcollective::facts
