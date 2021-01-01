@@ -2,7 +2,7 @@
 mcollective::plugin_group: wheel
 mcollective::configdir: "/usr/local/etc/choria"
 mcollective::bindir: "/usr/local/bin"
-mcollective::libdir: "/usr/local/share"
+mcollective::libdir: "/usr/local/share/choria/plugins"
 mcollective::rubypath: "/usr/local/bin/ruby"
 mcollective::gem_provider: "gem"
 mcollective::required_directories: []
