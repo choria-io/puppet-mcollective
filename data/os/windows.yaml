@@ -12,7 +12,6 @@ mcollective::manage_bin_symlinks: false
 
 mcollective::required_directories:
   - "C:/ProgramData/choria"
-  - "C:/ProgramData/choria/etc"
   - "C:/ProgramData/choria/lib"
   - "C:/ProgramData/choria/var"
   - "C:/ProgramData/choria/var/log"
