@@ -1,5 +1,12 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/01/13|     |Release 0.13.0                                                                                           |
+|2021/01/07|     |Correctly configure file modes on windows                                                                |
+|2020/12/30|282  |Remove `mcollective::package` class                                                                      |
+|2020/12/28|278  |Relocate configuration to `/etc/choria`                                                                  |
+|2020/12/15|638  |Check choria related paths for configuration                                                             |
+|2020/12/15|638  |Revert the mcollective server facts                                                                      |
+|2020/12/05|     |Remove mcollective::service                                                                              |
 |2020/11/25|     |Release 0.12.0                                                                                           |
 |2020/11/23|273  |Initial Puppet 7 support                                                                                 |
 |2020/11/05|269  |Improve network utilization by using file() and not source                                               |
