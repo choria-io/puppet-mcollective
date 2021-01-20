@@ -126,7 +126,7 @@ define mcollective::module_plugin (
     }
 
     $merged_files.each |$file| {
-      if $file =~ /agent\/([^\/]+).rb/ {
+      if $file =~ /agent\/([^\/]+).rb/ or $file =~ /agent\/([^\/]+)$/ {
         $f_tag = "mcollective_agent_${1}_server"
       } else {
         $f_tag = undef
