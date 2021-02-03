@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/02/03|     |Release 0.13.1                                                                                           |
+|2021/01/20|288  |Support extensionless agent executables for `external` agents                                            |
 |2021/01/13|     |Release 0.13.0                                                                                           |
 |2021/01/07|     |Correctly configure file modes on windows                                                                |
 |2020/12/30|282  |Remove `mcollective::package` class                                                                      |
