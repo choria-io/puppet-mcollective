@@ -42,7 +42,6 @@ class mcollective::config {
   # to set to specific values for whatever reason
   $shim_overrides = {
     "rpcaudit"        => "0",
-    "logfile"         => "/var/log/choria-mcorpc.log",
     "collectives"     => "mcollective",
     "main_collective" => "mcollective",
     "daemonize"       => "0"
