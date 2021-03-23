@@ -18,7 +18,7 @@ Facter.add(:mcollective) do
 
       ["client", "server"].each do |config|
         if MCollective::Util.windows?
-          configfile = File.join(MCollective::Util.windows_prefix, "etc", "%s.cfg" % config)
+          configfile = File.join(MCollective::Util.choria_windows_prefix, "etc", "%s.conf" % config)
         else
           [
             "/etc/choria/%s.conf",
