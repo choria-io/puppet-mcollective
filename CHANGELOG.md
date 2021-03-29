@@ -1,5 +1,9 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/02/29|     |Release 0.13.2                                                                                           |
+|2021/03/22|295  |Support latest puppetlabs/stdlib                                                                         |
+|2021/03/18|297  |Fix mcollective fact on windows                                                                          |
+|2021/02/20|291  |Fix logfile path for windows                                                                             |
 |2021/02/03|     |Release 0.13.1                                                                                           |
 |2021/01/20|288  |Support extensionless agent executables for `external` agents                                            |
 |2021/01/13|     |Release 0.13.0                                                                                           |
