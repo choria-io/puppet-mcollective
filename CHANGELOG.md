@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/08/29|     |Release 0.13.3                                                                                           |
+|2021/08/26|     |Support latest puppetlabs/stdlib                                                                         |
 |2021/02/29|     |Release 0.13.2                                                                                           |
 |2021/03/22|295  |Support latest puppetlabs/stdlib                                                                         |
 |2021/03/18|297  |Fix mcollective fact on windows                                                                          |
