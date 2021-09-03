@@ -1,5 +1,6 @@
 ---
 mcollective::libdir: "/etc/puppetlabs/mcollective/plugins"
 mcollective::rubypath: "/usr/bin/ruby-2.7"
-mcollective::required_directories: []
+mcollective::required_directories:
+  - /etc/puppetlabs/mcollective
 mcollective::manage_bin_symlinks: false
