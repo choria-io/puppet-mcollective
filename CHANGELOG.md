@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/09/20|     |Release 0.13.4                                                                                           |
+|2021/09/03|303  |Arch Linux: Ensure plugin directory exists                                                               |
+|2021/09/03|301  |Update rubypath to Ruby 2.7 on Arch Linux                                                                |
 |2021/08/29|     |Release 0.13.3                                                                                           |
 |2021/08/26|     |Support latest puppetlabs/stdlib                                                                         |
 |2021/02/29|     |Release 0.13.2                                                                                           |

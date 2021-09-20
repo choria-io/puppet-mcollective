@@ -1,6 +1,6 @@
 {
   "name": "choria-mcollective",
-  "version": "0.13.3",
+  "version": "0.13.4",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
   "summary": "Configure MCollective as found in the Puppet Agent",
@@ -14,29 +14,29 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
@@ -50,17 +50,17 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "8",
-        "9"
+        "9",
+        "10",
+        "11"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "10.04",
-        "12.04",
-        "14.04",
-        "18.04"
+        "16.04",
+        "18.04",
+        "20.04"
       ]
     },
     {
