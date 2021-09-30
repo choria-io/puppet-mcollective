@@ -12,11 +12,20 @@
   ],
   "operatingsystem_support": [
     {
-      "operatingsystem": "RedHat",
+      "operatingsystem": "AIX",
       "operatingsystemrelease": [
-        "7",
+        "7.1",
+        "7.2"
+      ]
+    },
+    {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
         "8"
       ]
+    },
+    {
+      "operatingsystem": "Archlinux"
     },
     {
       "operatingsystem": "CentOS",
@@ -26,9 +35,53 @@
       ]
     },
     {
+      "operatingsystem": "Darwin",
+      "operatingsystemrelease": [
+        "10.11",
+        "10.12",
+        "10.13"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "9",
+        "10",
+        "11"
+      ]
+    },
+    {
+      "operatingsystem": "Fedora",
+      "operatingsystemrelease": [
+        "33",
+        "34",
+        "35"
+      ]
+    },
+    {
+      "operatingsystem": "FreeBSD",
+      "operatingsystemrelease": [
+        "12",
+        "13"
+      ]
+    },
+    {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
         "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "RockyLinux",
+      "operatingsystemrelease": [
         "8"
       ]
     },
@@ -42,79 +95,35 @@
     {
       "operatingsystem": "SLES",
       "operatingsystemrelease": [
-        "10 SP4",
-        "11 SP1",
-        "12"
-      ]
-    },
-    {
-      "operatingsystem": "Debian",
-      "operatingsystemrelease": [
-        "9",
-        "10",
-        "11"
+        "11",
+        "12",
+        "15"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "16.04",
         "18.04",
         "20.04"
       ]
     },
     {
-      "operatingsystem": "Solaris",
-      "operatingsystemrelease": [
-        "10",
-        "11",
-        "12"
-      ]
-    },
-    {
       "operatingsystem": "Windows",
       "operatingsystemrelease": [
-        "Server 2003",
-        "Server 2003 R2",
-        "Server 2008",
-        "Server 2008 R2",
         "Server 2012",
         "Server 2012 R2",
-        "7",
-        "8"
+        "Server 2016",
+        "Server 2019",
+        "Server 2022",
+        "8",
+        "10"
       ]
-    },
-    {
-      "operatingsystem": "AIX",
-      "operatingsystemrelease": [
-        "5.3",
-        "6.1",
-        "7.1"
-      ]
-    },
-    {
-      "operatingsystem": "Darwin",
-      "operatingsystemrelease": [
-        "10.11",
-        "10.12",
-        "10.13"
-      ]
-    },
-    {
-      "operatingsystem": "FreeBSD",
-      "operatingsystemrelease": [
-        "11",
-        "12"
-      ]
-    },
-    {
-      "operatingsystem": "Archlinux"
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.0.0"
+      "version_requirement": ">= 6.0.0 < 8.0.0"
     }
   ]
 }
