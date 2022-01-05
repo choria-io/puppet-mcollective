@@ -30,6 +30,7 @@ define mcollective::module_plugin (
   Enum["present", "absent"] $ensure = "present",
   String $rego_policy_source = "",
   Enum['content', 'source'] $file_transfer_type = $mcollective::plugin_file_transfer_type,
+  Optional[Array[String]] $gem_options = $mcollective::gem_options,
 ) {
   if $client or $server {
     if ($server and $client) {
@@ -64,10 +65,11 @@ define mcollective::module_plugin (
     if $manage_gem_dependencies {
       $gem_dependencies.each |$gem, $version| {
         package{$gem:
-          ensure   => $version,
-          provider => $mcollective::gem_provider,
-          source   => $mcollective::gem_source,
-          tag      => "mcollective_plugin_${name}_packages"
+          ensure          => $version,
+          provider        => $mcollective::gem_provider,
+          source          => $mcollective::gem_source,
+          tag             => "mcollective_plugin_${name}_packages",
+          install_options => $gem_options,
         }
       }
     }
