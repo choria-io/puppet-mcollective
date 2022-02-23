@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2022/02/23|     |Release 0.14.1                                                                                           |
+|2022/02/23|312  |Sets a default for the gem_options property                                                              |
 |2022/02/23|     |Release 0.14.0                                                                                           |
 |2022/01/04|310  |Add install_options for the gem install                                                                  |
 |2021/10/25|307  |Arch Linux: Switch from Ruby 2.7 to 3                                                                    |
