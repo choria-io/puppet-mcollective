@@ -68,7 +68,7 @@ class mcollective (
   Optional[String[1]] $gem_source = undef,
   String[1] $gem_provider,
   Enum['content', 'source'] $plugin_file_transfer_type = 'source',
-  Optional[Array[String]] $gem_options,
+  Optional[Array[String]] $gem_options = [],
 ) {
   $factspath = "${configdir}/generated-facts.yaml"
 
