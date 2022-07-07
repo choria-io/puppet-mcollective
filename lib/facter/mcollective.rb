@@ -1,8 +1,7 @@
 Facter.add(:mcollective) do
-  pver = Facter.value(:puppetversion)
-  aiover = Facter.value(:aio_agent_version)
-
   setcode do
+    pver = Facter.value(:puppetversion)
+    aiover = Facter.value(:aio_agent_version)
     result = {
       "client" => {},
       "server" => {},
