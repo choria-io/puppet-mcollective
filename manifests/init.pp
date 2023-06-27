@@ -47,7 +47,7 @@ class mcollective (
   Stdlib::Absolutepath $rubypath,
   Boolean $manage_bin_symlinks = false,
   Integer $facts_refresh_interval,
-  String[1] $periodic_runmode,
+  Enum["cron", "systemd.timer"] $periodic_runmode = "cron",
   Array[Mcollective::Collective] $collectives,
   Array[Mcollective::Collective] $client_collectives = $collectives,
   Optional[Mcollective::Collective] $main_collective = undef,
