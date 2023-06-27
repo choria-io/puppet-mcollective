@@ -4,6 +4,7 @@ class mcollective::facts (
   String $configdir = $mcollective::configdir,
   String $factspath = $mcollective::factspath,
   Integer $refresh_interval = $mcollective::facts_refresh_interval,
+  String[1] $runmode = $mcollective::periodic_runmode,
   Optional[String] $owner = $mcollective::plugin_owner,
   Optional[String] $group = $mcollective::plugin_group,
   Optional[String] $pidfile = $mcollective::facts_pidfile,
@@ -53,10 +54,39 @@ class mcollective::facts (
       }
     }
   } else {
-    cron{"mcollective_facts_yaml_refresh":
-      ensure  => $cron_ensure,
-      command => "'${rubypath}' '${scriptpath}' -o '${factspath}' ${factspid} &> /dev/null",
-      minute  => $cron_minutes
+    if $runmode == "cron" {
+      cron{"mcollective_facts_yaml_refresh":
+        ensure  => $cron_ensure,
+        command => "'${rubypath}' '${scriptpath}' -o '${factspath}' ${factspid} &> /dev/null",
+        minute  => $cron_minutes
+      }
+      systemd::timer { "mcollective_facts_yaml_refresh.timer":
+        active => false,
+        enable => false,
+      }
+    }
+    elsif $runmode == "systemd.timer" {
+      $_timer_minutes = join($cron_minutes,",")
+      $_timer = @("EOT")
+        [Timer]
+        OnCalendar=*-*-* *:${_timer_minutes}:00
+        Unit=mcollective_facts_yaml_refresh.service
+        | EOT
+      $_service = @("EOT")
+        [Service]
+        Type=oneshot
+        ExecStart=${rubypath} ${scriptpath} -o ${factspath}
+        | EOT
+      systemd::timer { "mcollective_facts_yaml_refresh.timer":
+        timer_content   => $_timer,
+        service_unit    => "mcollective_facts_yaml_refresh.service",
+        service_content => $_service,
+        active          => true,
+        enable          => true,
+      }
+      cron{"mcollective_facts_yaml_refresh":
+        ensure => absent,
+      }
     }
   }
 }
