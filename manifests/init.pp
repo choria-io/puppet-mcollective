@@ -10,7 +10,7 @@
 # @param libdir The directory where plugins will go in
 # @param configdir Root directory to config files
 # @param facts_refresh_interval Minutes between fact refreshes, set to 0 to disable periodic based refreshes
-# @param periodic_runmode Defaults to "cron" and may be set to "systemd.timer"
+# @param periodic_runmode Specify which provider to use for periodic actions
 # @param rubypath Path to the ruby executable
 # @param collectives A list of collectives the node belongs to
 # @param client_collectives A list of collectives the client has access to, defaults to the same as the node
