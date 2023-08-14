@@ -4,7 +4,7 @@ class mcollective::facts (
   String $configdir = $mcollective::configdir,
   String $factspath = $mcollective::factspath,
   Integer $refresh_interval = $mcollective::facts_refresh_interval,
-  String[1] $runmode = $mcollective::periodic_runmode,
+  Enum["cron", "systemd.timer"] $runmode = $mcollective::periodic_runmode,
   Optional[String] $owner = $mcollective::plugin_owner,
   Optional[String] $group = $mcollective::plugin_group,
   Optional[String] $pidfile = $mcollective::facts_pidfile,
