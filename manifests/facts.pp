@@ -77,7 +77,7 @@ class mcollective::facts (
         Type=oneshot
         ExecStart=${rubypath} ${scriptpath} -o ${factspath}
         | EOT
-      systemd::timer { "mcollective_facts_yaml_refresh.timer":
+      systemd::timer{"mcollective_facts_yaml_refresh.timer":
         timer_content   => $_timer,
         service_unit    => "mcollective_facts_yaml_refresh.service",
         service_content => $_service,
