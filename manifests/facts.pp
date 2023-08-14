@@ -60,7 +60,7 @@ class mcollective::facts (
         command => "'${rubypath}' '${scriptpath}' -o '${factspath}' ${factspid} &> /dev/null",
         minute  => $cron_minutes
       }
-      systemd::timer { "mcollective_facts_yaml_refresh.timer":
+      systemd::timer{"mcollective_facts_yaml_refresh.timer":
         active => false,
         enable => false,
       }
