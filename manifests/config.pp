@@ -41,10 +41,11 @@ class mcollective::config {
   # These are overrides for the choria shim that we definitely do not want set or have
   # to set to specific values for whatever reason
   $shim_overrides = {
-    "rpcaudit"        => "0",
-    "collectives"     => "mcollective",
-    "main_collective" => "mcollective",
-    "daemonize"       => "0"
+    "rpcaudit"         => "0",
+    "rpcauthorization" => "0",
+    "collectives"      => "mcollective",
+    "main_collective"  => "mcollective",
+    "daemonize"        => "0"
   }
 
   # The order of these are important:
