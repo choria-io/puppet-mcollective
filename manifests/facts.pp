@@ -3,6 +3,7 @@ class mcollective::facts (
   String $rubypath = $mcollective::rubypath,
   String $configdir = $mcollective::configdir,
   String $factspath = $mcollective::factspath,
+  Optional[Enum['cron', 'systemd']] $refresh_type = $mcollective::facts_refresh_type,
   Integer $refresh_interval = $mcollective::facts_refresh_interval,
   Optional[String] $owner = $mcollective::plugin_owner,
   Optional[String] $group = $mcollective::plugin_group,
@@ -19,9 +20,20 @@ class mcollective::facts (
   }
 
   if $refresh_interval > 0 and $server {
-    $cron_ensure = "present"
+    if $refresh_type == "systemd" {
+      $cron_ensure = "absent"
+      $systemd_ensure = "present"
+      $systemd_active = true
+      $systemd_enable = true
+    } else {
+      $cron_ensure = "present"
+      $systemd_ensure = "absent"
+      $systemd_active = false
+      $systemd_enable = false
+    }
     $cron_offset = "00:${sprintf("%02d", fqdn_rand($refresh_interval, 'facts cronjob'))}"
     $cron_minutes = mcollective::crontimes(fqdn_rand($refresh_interval, 'facts cronjob'), $refresh_interval, 60)
+    $timer_on_calendar = "*:${cron_minutes.join(',')}"
     $creates = $factspath
 
     exec{"mcollective_facts_yaml_refresh":
@@ -31,8 +43,12 @@ class mcollective::facts (
     }
   } else {
     $cron_ensure = "absent"
+    $systemd_ensure = "absent"
+    $systemd_active = false
+    $systemd_enable = false
     $cron_offset = "00:00"
     $cron_minutes = "0"
+    $timer_on_calendar = "*:0"
     $creates = undef # always run via puppet when opted out of cron option
   }
 
@@ -57,6 +73,20 @@ class mcollective::facts (
       ensure  => $cron_ensure,
       command => "'${rubypath}' '${scriptpath}' -o '${factspath}' ${factspid} &> /dev/null",
       minute  => $cron_minutes
+    }
+    systemd::timer { "mcollective-facts-refresh.timer":
+      ensure          => $systemd_ensure,
+      active          => $systemd_active,
+      enable          => $systemd_enable,
+      timer_content   => epp("mcollective/refresh_facts.timer.epp", {
+          "oncalendar" => $timer_on_calendar,
+      }),
+      service_content => epp("mcollective/refresh_facts.service.epp", {
+          "rubypath"   => $rubypath,
+          "scriptpath" => $scriptpath,
+          "factspath"  => $factspath,
+          "pidfile"    => $pidfile,
+      }),
     }
   }
 }
