@@ -1,0 +1,19 @@
+<%- |
+  String $rubypath,
+  String $scriptpath,
+  String $factspath,
+  String $pidfile,
+| -%>
+#
+# Managed by Puppet, DO NOT EDIT
+#
+[Unit]
+Description=Systemd Service for Mcollective fact refresh
+
+[Service]
+Type=oneshot
+ExecStart=<%= $rubypath %> <%= $scriptpath %> -o <%= $factspath %> -p <%= $pidfile %>
+PIDFile=<%= $pidfile %>
+User=root
+Group=root
+SyslogIdentifier=mcollective-facts-refresh

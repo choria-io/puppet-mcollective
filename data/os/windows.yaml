@@ -1,6 +1,7 @@
 mcollective::plugin_owner: ~
 mcollective::plugin_group: ~
 
+mcollective::facts_refresh_type: ~
 mcollective::bindir: "C:/Program Files/choria/bin"
 mcollective::libdir: "C:/ProgramData/choria/lib/plugins"
 mcollective::configdir: "C:/ProgramData/choria/etc"
