@@ -27,7 +27,7 @@ Facter.add(:mcollective) do
             "/etc/mcollective/%s.cfg",
           ].each do |path|
             configfile = path % config
-            break if File.exists?(configfile)
+            break if File.exist?(configfile)
           end
         end
 
