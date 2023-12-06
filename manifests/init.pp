@@ -9,7 +9,7 @@
 # @param bindir Where to create symlinks for our commands
 # @param libdir The directory where plugins will go in
 # @param configdir Root directory to config files
-# @param facts_refresh_type Kind of fact refresh to run. Choices are cron or systemd (timer). Does not apply to Windows.
+# @param facts_refresh_type Kind of fact refresh to run. Choices are cron or systemd (timer) or none. Does not apply to Windows.
 # @param facts_refresh_interval Minutes between fact refreshes, set to 0 to disable cron based refreshes
 # @param rubypath Path to the ruby executable
 # @param collectives A list of collectives the node belongs to
@@ -46,7 +46,7 @@ class mcollective (
   Stdlib::Absolutepath $configdir,
   Stdlib::Absolutepath $rubypath,
   Boolean $manage_bin_symlinks = false,
-  Optional[Enum['cron', 'systemd']] $facts_refresh_type,
+  Optional[Enum["cron", "systemd", "none"]] $facts_refresh_type,
   Integer $facts_refresh_interval,
   Array[Mcollective::Collective] $collectives,
   Array[Mcollective::Collective] $client_collectives = $collectives,
@@ -76,7 +76,9 @@ class mcollective (
 
   contain mcollective::plugin_dirs
   contain mcollective::config
-  contain mcollective::facts
+  if $facts_refresh_type != "none" {
+    contain mcollective::facts
+  }
 
   contain $plugin_classes - $plugin_classes_exclude
 }
