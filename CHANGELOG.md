@@ -1,5 +1,10 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2024/02/03|     |Release 0.14.5                                                                                           |
+|2023/12/02|331  |Allow disabling facts refresh management                                                                 |
+|2023/11/30|322  |Support Puppet 8                                                                                         |
+|2023/11/28|328  |Allow defining facts refresh as systemd timer                                                            |
+|2023/09/22|325  |Disable rpcauthorization for shim layer                                                                  |
 |2022/09/18|     |Release 0.14.4                                                                                           |
 |2023/09/05|     |Support `stdlib` version 9                                                                               |
 |2022/08/03|     |Release 0.14.3                                                                                           |
