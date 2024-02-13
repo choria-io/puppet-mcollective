@@ -20,7 +20,7 @@ class mcollective::facts (
   }
 
   if $refresh_interval > 0 and $server {
-    if $refresh_type == "systemd" {
+    if $facts["systemd"] == "systemd" and $refresh_type == "systemd" {
       $cron_ensure = "absent"
       $systemd_ensure = "present"
       $systemd_active = true
@@ -74,19 +74,21 @@ class mcollective::facts (
       command => "'${rubypath}' '${scriptpath}' -o '${factspath}' ${factspid} &> /dev/null",
       minute  => $cron_minutes
     }
-    systemd::timer { "mcollective-facts-refresh.timer":
-      ensure          => $systemd_ensure,
-      active          => $systemd_active,
-      enable          => $systemd_enable,
-      timer_content   => epp("mcollective/refresh_facts.timer.epp", {
+    if $facts["systemd"] == "systemd" {
+      systemd::timer { "mcollective-facts-refresh.timer":
+        ensure          => $systemd_ensure,
+        active          => $systemd_active,
+        enable          => $systemd_enable,
+        timer_content   => epp("mcollective/refresh_facts.timer.epp", {
           "oncalendar" => $timer_on_calendar,
-      }),
-      service_content => epp("mcollective/refresh_facts.service.epp", {
+        }),
+        service_content => epp("mcollective/refresh_facts.service.epp", {
           "rubypath"   => $rubypath,
           "scriptpath" => $scriptpath,
           "factspath"  => $factspath,
           "pidfile"    => $pidfile,
-      }),
+        }),
+      }
     }
   }
 }
