@@ -1,6 +1,6 @@
 {
   "name": "choria-mcollective",
-  "version": "0.14.5",
+  "version": "0.14.6",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
   "summary": "Configure MCollective as found in the Puppet Agent",
@@ -13,44 +13,21 @@
   ],
   "operatingsystem_support": [
     {
-      "operatingsystem": "AIX",
-      "operatingsystemrelease": [
-        "7.1",
-        "7.2"
-      ]
-    },
-    {
-      "operatingsystem": "AlmaLinux",
-      "operatingsystemrelease": [
-        "8",
-        "9"
-      ]
-    },
-    {
       "operatingsystem": "Archlinux"
     },
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "7",
         "8",
         "9"
       ]
     },
     {
-      "operatingsystem": "Darwin",
-      "operatingsystemrelease": [
-        "10.11",
-        "10.12",
-        "10.13"
-      ]
-    },
-    {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9",
-        "10",
-        "11"
+        "12",
+        "13",
+        "14"
       ]
     },
     {
@@ -64,21 +41,20 @@
     {
       "operatingsystem": "FreeBSD",
       "operatingsystemrelease": [
-        "12",
-        "13"
+        "13",
+        "14"
       ]
     },
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "7",
-        "8"
+        "8",
+        "9"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "7",
         "8",
         "9"
       ]
@@ -91,24 +67,17 @@
       ]
     },
     {
-      "operatingsystem": "Scientific",
+      "operatingsystem": "AlmaLinux",
       "operatingsystemrelease": [
-        "7"
-      ]
-    },
-    {
-      "operatingsystem": "SLES",
-      "operatingsystemrelease": [
-        "11",
-        "12",
-        "15"
+        "8",
+        "9"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "18.04",
-        "20.04"
+        "23.10",
+        "24.04"
       ]
     },
     {
@@ -127,7 +96,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.0.0 < 9.0.0"
+      "version_requirement": ">= 8.0.0 < 9.0.0"
     }
   ]
 }
