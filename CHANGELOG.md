@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2024/02/03|     |Release 0.14.6                                                                                           |
+|2024/02/07|334  |Fix catalog when systemd is not available                                                                |
 |2024/02/03|     |Release 0.14.5                                                                                           |
 |2023/12/02|331  |Allow disabling facts refresh management                                                                 |
 |2023/11/30|322  |Support Puppet 8                                                                                         |
