@@ -9,8 +9,5 @@ hierarchy:
   - name: "OS family"
     path: "os/%{facts.os.family}.yaml"
 
-  - name: "Puppet version specific common"
-    path: "puppet_aio/%{facts.mcollective.puppet_major_version}.yaml"
-
   - name: "common"
     path: "common.yaml"
