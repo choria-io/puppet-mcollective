@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2026/06/11|     |Release 0.15.0                                                                                           |
+|2026/03/17|     |Drop unused `puppet_aio` hiera layer                                                                     |
+|2025/01/07|338  |Fix facts refreshing when `refresh_type=systemd`                                                         |
 |2024/02/03|     |Release 0.14.6                                                                                           |
 |2024/02/07|334  |Fix catalog when systemd is not available                                                                |
 |2024/02/03|     |Release 0.14.5                                                                                           |
